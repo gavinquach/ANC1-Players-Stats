@@ -33,3 +33,12 @@ function filterTable() {
       }
     }
   }
+
+function highlightButton(num) {
+  let buttons = document.getElementsByClassName("ClassButton");
+  for (let i = 0; i < buttons.length; i++) {
+    const btn = buttons[i];
+    btn.classList.remove("btnHighlight");
+  }
+  buttons[num].classList.add("btnHighlight");
+}

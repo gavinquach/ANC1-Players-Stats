@@ -165,6 +165,8 @@
         });
         table.searchBuilder.container().addClass('inline');
         table.searchBuilder.container().prependTo(table.table().container());
+        
+        document.getElementsByClassName("ClassButton")[0].classList.add("btnHighlight");
     });
     </script>
   </head>
@@ -177,15 +179,15 @@
     <h2>Class Select</h2>
     <div>
       <button style="display: none" onClick="toggleClassTable('allClasses')">All</button>
-      <button onClick="toggleClassTable('scout')">Scout</button>
-      <button onClick="toggleClassTable('soldier')">Soldier</button>
-      <button onClick="toggleClassTable('pyro')">Pyro</button>
-      <button onClick="toggleClassTable('demoman')">Demoman</button>
-      <button onClick="toggleClassTable('heavyweapons')">Heavy</button>
-      <button onClick="toggleClassTable('engineer')">Engineer</button>
-      <button onClick="toggleClassTable('medic')">Medic</button>
-      <button onClick="toggleClassTable('sniper')">Sniper</button>
-      <button onClick="toggleClassTable('spy')">Spy</button>
+      <button onClick="toggleClassTable('scout'); highlightButton(0)" class="ClassButton">Scout</button>
+      <button onClick="toggleClassTable('soldier'); highlightButton(1)" class="ClassButton">Soldier</button>
+      <button onClick="toggleClassTable('pyro'); highlightButton(2)" class="ClassButton">Pyro</button>
+      <button onClick="toggleClassTable('demoman'); highlightButton(3)" class="ClassButton">Demoman</button>
+      <button onClick="toggleClassTable('heavyweapons'); highlightButton(4)" class="ClassButton">Heavy</button>
+      <button onClick="toggleClassTable('engineer'); highlightButton(5)" class="ClassButton">Engineer</button>
+      <button onClick="toggleClassTable('medic'); highlightButton(6)" class="ClassButton">Medic</button>
+      <button onClick="toggleClassTable('sniper'); highlightButton(7)" class="ClassButton">Sniper</button>
+      <button onClick="toggleClassTable('spy'); highlightButton(8)" class="ClassButton">Spy</button>
     </div>
 
     <div id="allClasses" class="table-hidden">

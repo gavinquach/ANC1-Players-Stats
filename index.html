@@ -1,0 +1,3473 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>TF2 Asia Nations Cup Player Stats</title>
+    
+    <link rel="stylesheet" href="https://cdn.datatables.net/searchbuilder/1.3.4/css/searchBuilder.dataTables.min.css">
+    <link rel="stylesheet" href="https://cdn.datatables.net/buttons/2.2.3/css/buttons.dataTables.min.css">
+    <link rel="https://cdn.datatables.net/1.12.1/css/jquery.dataTables.min.css">
+    <link rel="stylesheet" href="style.css">
+
+    <script src="sort-table.min.js"></script>
+    <script src="index.js"></script>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script src="https://cdn.datatables.net/1.12.1/js/jquery.dataTables.min.js"></script>
+    <script src="https://cdn.datatables.net/searchbuilder/1.3.4/js/dataTables.searchBuilder.min.js"></script>
+    <script src="https://cdn.datatables.net/datetime/1.1.2/js/dataTables.dateTime.min.js"></script>
+    <script src="https://cdn.datatables.net/buttons/2.2.3/js/dataTables.buttons.min.js"></script>
+
+    <script>
+      $(document).ready(function() {
+        let table = $('#scoutStats').DataTable({
+          language: {
+            searchBuilder: {
+                title: ''
+            },
+            search: "Search: "
+          },
+          titles:[
+              'SearchBuilder'
+          ],
+          paging: false,
+          dom: 'Qlfrtip'
+        });
+        table.searchBuilder.container().addClass('inline');
+        table.searchBuilder.container().prependTo(table.table().container());
+
+        table = $('#soldierStats').DataTable({
+          language: {
+            searchBuilder: {
+                title: ''
+            },
+            search: "Search: "
+          },
+          titles:[
+              'SearchBuilder'
+          ],
+          paging: false,
+          dom: 'Qlfrtip'
+        });
+        table.searchBuilder.container().addClass('inline');
+        table.searchBuilder.container().prependTo(table.table().container());
+
+        table = $('#pyroStats').DataTable({
+          language: {
+            searchBuilder: {
+                title: ''
+            },
+            search: "Search: "
+          },
+          titles:[
+              'SearchBuilder'
+          ],
+          paging: false,
+          dom: 'Qlfrtip'
+        });
+        table.searchBuilder.container().addClass('inline');
+        table.searchBuilder.container().prependTo(table.table().container());
+
+        table = $('#demomanStats').DataTable({
+          language: {
+            searchBuilder: {
+                title: ''
+            },
+            search: "Search: "
+          },
+          titles:[
+              'SearchBuilder'
+          ],
+          paging: false,
+          dom: 'Qlfrtip'
+        });
+        table.searchBuilder.container().addClass('inline');
+        table.searchBuilder.container().prependTo(table.table().container());
+
+        table = $('#heavyweaponsStats').DataTable({
+          language: {
+            searchBuilder: {
+                title: ''
+            },
+            search: "Search: "
+          },
+          titles:[
+              'SearchBuilder'
+          ],
+          paging: false,
+          dom: 'Qlfrtip'
+        });
+        table.searchBuilder.container().addClass('inline');
+        table.searchBuilder.container().prependTo(table.table().container());
+
+        table = $('#engineerStats').DataTable({
+          language: {
+            searchBuilder: {
+                title: ''
+            },
+            search: "Search: "
+          },
+          titles:[
+              'SearchBuilder'
+          ],
+          paging: false,
+          dom: 'Qlfrtip'
+        });
+        table.searchBuilder.container().addClass('inline');
+        table.searchBuilder.container().prependTo(table.table().container());
+
+        table = $('#medicStats').DataTable({
+          language: {
+            searchBuilder: {
+                title: ''
+            },
+            search: "Search: "
+          },
+          titles:[
+              'SearchBuilder'
+          ],
+          paging: false,
+          dom: 'Qlfrtip'
+        });
+        table.searchBuilder.container().addClass('inline');
+        table.searchBuilder.container().prependTo(table.table().container());
+
+        table = $('#sniperStats').DataTable({
+          language: {
+            searchBuilder: {
+                title: ''
+            },
+            search: "Search: "
+          },
+          titles:[
+              'SearchBuilder'
+          ],
+          paging: false,
+          dom: 'Qlfrtip'
+        });
+        table.searchBuilder.container().addClass('inline');
+        table.searchBuilder.container().prependTo(table.table().container());
+
+        table = $('#spyStats').DataTable({
+          language: {
+            searchBuilder: {
+                title: ''
+            },
+            search: "Search: "
+          },
+          titles:[
+              'SearchBuilder'
+          ],
+          paging: false,
+          dom: 'Qlfrtip'
+        });
+        table.searchBuilder.container().addClass('inline');
+        table.searchBuilder.container().prependTo(table.table().container());
+    });
+    </script>
+  </head>
+  <body>
+	<div id="output"></div>
+    <h1>TF2 Asia Nations Cup Player Stats</h1>
+    <p>Stats taken from ANC matches</p>
+
+    <h2>Class Select</h2>
+    <div>
+      <button style="display: none" onClick="toggleClassTable('allClasses')">All</button>
+      <button onClick="toggleClassTable('scout')">Scout</button>
+      <button onClick="toggleClassTable('soldier')">Soldier</button>
+      <button onClick="toggleClassTable('pyro')">Pyro</button>
+      <button onClick="toggleClassTable('demoman')">Demoman</button>
+      <button onClick="toggleClassTable('heavyweapons')">Heavy</button>
+      <button onClick="toggleClassTable('engineer')">Engineer</button>
+      <button onClick="toggleClassTable('medic')">Medic</button>
+      <button onClick="toggleClassTable('sniper')">Sniper</button>
+      <button onClick="toggleClassTable('spy')">Spy</button>
+    </div>
+
+    <div id="allClasses" class="table-hidden">
+      <h3>All</h3>
+      <table id="allClassesStats" class="js-sort-table">
+      <thead>
+        <tr>
+          <th class="js-sort-number">Steam ID</td>
+          <th class="js-sort-number">Aliases</td>
+          <th class="js-sort-number">Kills</td>
+          <th class="js-sort-number">Deaths</td>
+          <th class="js-sort-number">Assists</td>
+          <th class="js-sort-number">DPM</td>
+          <th class="js-sort-number">K/D</td>
+          <th class="js-sort-number">KA/D</td>
+          <th class="js-sort-number">K/30m</th>
+          <th class="js-sort-number">D/30m</th>
+          <th class="js-sort-number">Total Damage</td>
+          <th class="js-sort-number">Total Time (s)</td>
+          <th class="js-sort-number">Logs</td>
+        </tr>
+      </thead>
+      <tbody>
+          <tr>
+            <td class="">[U:1:205675480]</td>
+            <td class="">SG jpd</td>
+            <td class="">198</td>
+            <td class="">129</td>
+            <td class="">108</td>
+            <td class="">250.03</td>
+            <td class="">1.53</td>
+            <td class="">2.37</td>
+            <td class="">60548</td>
+            <td class="">14530</td>
+            <td class="">3286805, 3286820, 3286827, 3286839, 3287447, 3287482, 3287519, 3287549, 3287557, 3287567</td>
+          </tr>
+          <tr>
+            <td class="">[U:1:178618060]</td>
+            <td class="">starli</td>
+            <td class="">36</td>
+            <td class="">21</td>
+            <td class="">16</td>
+            <td class="">259.66</td>
+            <td class="">1.71</td>
+            <td class="">2.48</td>
+            <td class="">10698</td>
+            <td class="">2472</td>
+            <td class="">3286805, 3286820</td>
+          </tr>
+          <tr>
+            <td class="">[U:1:183670774]</td>
+            <td class="">KR Stryker</td>
+            <td class="">156</td>
+            <td class="">67</td>
+            <td class="">73</td>
+            <td class="">306.20</td>
+            <td class="">2.33</td>
+            <td class="">3.42</td>
+            <td class="">47129</td>
+            <td class="">9235</td>
+            <td class="">3286805, 3286815, 3286828, 3286840, 3286865, 3287470, 3287457</td>
+          </tr>
+          <tr>
+            <td class="">[U:1:1126684222]</td>
+            <td class="">KR Vinea</td>
+            <td class="">129</td>
+            <td class="">93</td>
+            <td class="">81</td>
+            <td class="">254.83</td>
+            <td class="">1.39</td>
+            <td class="">2.26</td>
+            <td class="">39338</td>
+            <td class="">9262</td>
+            <td class="">3286805, 3286815, 3286828, 3286840, 3286865, 3287470, 3287457</td>
+          </tr>
+          <tr>
+            <td class="">[U:1:48645190]</td>
+            <td class="">TW butterfly</td>
+            <td class="">40</td>
+            <td class="">42</td>
+            <td class="">12</td>
+            <td class="">247.44</td>
+            <td class="">0.95</td>
+            <td class="">1.24</td>
+            <td class="">11114</td>
+            <td class="">2695</td>
+            <td class="">3286808, 3286815, 3286839</td>
+          </tr>
+          <tr>
+            <td class="">[U:1:926069803]</td>
+            <td class="">TW catwif</td>
+            <td class="">22</td>
+            <td class="">22</td>
+            <td class="">14</td>
+            <td class="">242.02</td>
+            <td class="">1.00</td>
+            <td class="">1.64</td>
+            <td class="">8128</td>
+            <td class="">2015</td>
+            <td class="">3286808, 3286815</td>
+          </tr>
+          <tr>
+            <td class="">[U:1:33227167]</td>
+            <td class="">TH Birdfly</td>
+            <td class="">260</td>
+            <td class="">182</td>
+            <td class="">134</td>
+            <td class="">274.21</td>
+            <td class="">1.43</td>
+            <td class="">2.16</td>
+            <td class="">75910</td>
+            <td class="">16610</td>
+            <td class="">3286808, 3286820, 3286828, 3286842, 3286864, 3287457, 3287482, 3287492, 3287498, 3287519, 3287549, 3287557, 3287567</td>
+          </tr>
+          <tr>
+            <td class="">[U:1:105996834]</td>
+            <td class="">TH Luv</td>
+            <td class="">245</td>
+            <td class="">150</td>
+            <td class="">142</td>
+            <td class="">268.51</td>
+            <td class="">1.63</td>
+            <td class="">2.58</td>
+            <td class="">71173</td>
+            <td class="">15904</td>
+            <td class="">3286808, 3286842, 3286864, 3287457, 3287482, 3287492, 3287498, 3287519, 3287549, 3287557, 3287567</td>
+          </tr>
+          <tr>
+            <td class="">[U:1:122196021]</td>
+            <td class="">VN DeDstar</td>
+            <td class="">51</td>
+            <td class="">30</td>
+            <td class="">24</td>
+            <td class="">333.04</td>
+            <td class="">1.70</td>
+            <td class="">2.50</td>
+            <td class="">18378</td>
+            <td class="">3311</td>
+            <td class="">3286809, 3286826</td>
+          </tr>
+          <tr>
+            <td class="">[U:1:396627941]</td>
+            <td class="">MY jub</td>
+            <td class="">45</td>
+            <td class="">59</td>
+            <td class="">28</td>
+            <td class="">171.72</td>
+            <td class="">0.76</td>
+            <td class="">1.24</td>
+            <td class="">14957</td>
+            <td class="">5226</td>
+            <td class="">3286809, 3286814, 3286827, 3286840</td>
+          </tr>
+          <tr>
+            <td class="">[U:1:143476343]</td>
+            <td class="">MY apples</td>
+            <td class="">139</td>
+            <td class="">121</td>
+            <td class="">63</td>
+            <td class="">238.74</td>
+            <td class="">1.15</td>
+            <td class="">1.67</td>
+            <td class="">46336</td>
+            <td class="">11645</td>
+            <td class="">3286809, 3286814, 3286827, 3286840, 3286864, 3287447, 3287470, 3287492, 3287498</td>
+          </tr>
+          <tr>
+            <td class="">[U:1:139041873]</td>
+            <td class="">VN teehee</td>
+            <td class="">39</td>
+            <td class="">30</td>
+            <td class="">24</td>
+            <td class="">245.11</td>
+            <td class="">1.30</td>
+            <td class="">2.10</td>
+            <td class="">13105</td>
+            <td class="">3208</td>
+            <td class="">3286809, 3286826</td>
+          </tr>
+          <tr>
+            <td class="">[U:1:338884682]</td>
+            <td class="">HK Joe</td>
+            <td class="">108</td>
+            <td class="">54</td>
+            <td class="">56</td>
+            <td class="">293.31</td>
+            <td class="">2.00</td>
+            <td class="">3.04</td>
+            <td class="">34347</td>
+            <td class="">7026</td>
+            <td class="">3286814, 3286826, 3286842, 3286865</td>
+          </tr>
+          <tr>
+            <td class="">[U:1:135277248]</td>
+            <td class="">HK sir9</td>
+            <td class="">83</td>
+            <td class="">51</td>
+            <td class="">31</td>
+            <td class="">239.95</td>
+            <td class="">1.63</td>
+            <td class="">2.24</td>
+            <td class="">27254</td>
+            <td class="">6815</td>
+            <td class="">3286814, 3286826, 3286842, 3286865</td>
+          </tr>
+          <tr>
+            <td class="">[U:1:87007493]</td>
+            <td class="">TW Hopps</td>
+            <td class="">15</td>
+            <td class="">16</td>
+            <td class="">7</td>
+            <td class="">241.67</td>
+            <td class="">0.94</td>
+            <td class="">1.38</td>
+            <td class="">4197</td>
+            <td class="">1042</td>
+            <td class="">3286815, 3286839</td>
+          </tr>
+          <tr>
+            <td class="">[U:1:312605197]</td>
+            <td class="">TH heria</td>
+            <td class="">76</td>
+            <td class="">33</td>
+            <td class="">35</td>
+            <td class="">340.74</td>
+            <td class="">2.30</td>
+            <td class="">3.36</td>
+            <td class="">23488</td>
+            <td class="">4136</td>
+            <td class="">3286820, 3286828, 3287498, 3287557</td>
+          </tr>
+          <tr>
+            <td class="">[U:1:1059335465]</td>
+            <td class="">SG ruee</td>
+            <td class="">223</td>
+            <td class="">110</td>
+            <td class="">113</td>
+            <td class="">307.45</td>
+            <td class="">2.03</td>
+            <td class="">3.05</td>
+            <td class="">62987</td>
+            <td class="">12292</td>
+            <td class="">3286827, 3286839, 3287447, 3287482, 3287519, 3287549, 3287557, 3287567</td>
+          </tr>
+          <tr>
+            <td class="">[U:1:80080450]</td>
+            <td class="">MY teejay</td>
+            <td class="">114</td>
+            <td class="">36</td>
+            <td class="">53</td>
+            <td class="">341.59</td>
+            <td class="">3.17</td>
+            <td class="">4.64</td>
+            <td class="">31312</td>
+            <td class="">5500</td>
+            <td class="">3286864, 3287470, 3287492, 3287498</td>
+          </tr>
+          <tr>
+            <td class="">[U:1:1321242748]</td>
+            <td class="">MY Doklalodka</td>
+            <td class="">6</td>
+            <td class="">12</td>
+            <td class="">4</td>
+            <td class="">120.39</td>
+            <td class="">0.50</td>
+            <td class="">0.83</td>
+            <td class="">1555</td>
+            <td class="">775</td>
+            <td class="">3287447</td>
+          </tr>
+          <tr>
+            <td class="">[U:1:84155717]</td>
+            <td class="">sean</td>
+            <td class="">45</td>
+            <td class="">42</td>
+            <td class="">13</td>
+            <td class="">285.76</td>
+            <td class="">1.07</td>
+            <td class="">1.38</td>
+            <td class="">18079</td>
+            <td class="">3796</td>
+            <td class="">3286805, 3286820, 3286827</td>
+          </tr>
+          <tr>
+            <td class="">[U:1:96363292]</td>
+            <td class="">SG n4ver</td>
+            <td class="">167</td>
+            <td class="">199</td>
+            <td class="">63</td>
+            <td class="">273.61</td>
+            <td class="">0.84</td>
+            <td class="">1.16</td>
+            <td class="">66245</td>
+            <td class="">14527</td>
+            <td class="">3286805, 3286820, 3286827, 3286839, 3287447, 3287482, 3287519, 3287549, 3287557, 3287567</td>
+          </tr>
+          <tr>
+            <td class="">[U:1:125463441]</td>
+            <td class="">Huey</td>
+            <td class="">111</td>
+            <td class="">137</td>
+            <td class="">25</td>
+            <td class="">233.08</td>
+            <td class="">0.81</td>
+            <td class="">0.99</td>
+            <td class="">38987</td>
+            <td class="">10036</td>
+            <td class="">3286805, 3286815, 3286828, 3286840, 3286865, 3287470, 3287457</td>
+          </tr>
+          <tr>
+            <td class="">[U:1:124208311]</td>
+            <td class="">Ch0W0n</td>
+            <td class="">72</td>
+            <td class="">131</td>
+            <td class="">24</td>
+            <td class="">197.36</td>
+            <td class="">0.55</td>
+            <td class="">0.73</td>
+            <td class="">33012</td>
+            <td class="">10036</td>
+            <td class="">3286805, 3286815, 3286828, 3286840, 3286865, 3287470, 3287457</td>
+          </tr>
+          <tr>
+            <td class="">[U:1:218107249]</td>
+            <td class="">TW ukk</td>
+            <td class="">20</td>
+            <td class="">56</td>
+            <td class="">8</td>
+            <td class="">207.88</td>
+            <td class="">0.36</td>
+            <td class="">0.50</td>
+            <td class="">11080</td>
+            <td class="">3198</td>
+            <td class="">3286808, 3286815, 3286839</td>
+          </tr>
+          <tr>
+            <td class="">[U:1:312605197]</td>
+            <td class="">TH heria</td>
+            <td class="">161</td>
+            <td class="">140</td>
+            <td class="">60</td>
+            <td class="">296.67</td>
+            <td class="">1.15</td>
+            <td class="">1.58</td>
+            <td class="">63334</td>
+            <td class="">12809</td>
+            <td class="">3286808, 3286842, 3286864, 3287457, 3287482, 3287492, 3287498, 3287519, 3287549, 3287557, 3287567</td>
+          </tr>
+          <tr>
+            <td class="">[U:1:308396328]</td>
+            <td class="">TH DowWy</td>
+            <td class="">198</td>
+            <td class="">248</td>
+            <td class="">86</td>
+            <td class="">251.12</td>
+            <td class="">0.80</td>
+            <td class="">1.15</td>
+            <td class="">85268</td>
+            <td class="">20373</td>
+            <td class="">3286808, 3286820, 3286828, 3286842, 3286864, 3287457, 3287482, 3287492, 3287498, 3287519, 3287549, 3287557, 3287567</td>
+          </tr>
+          <tr>
+            <td class="">[U:1:231493957]</td>
+            <td class="">Aylek$</td>
+            <td class="">22</td>
+            <td class="">41</td>
+            <td class="">13</td>
+            <td class="">189.59</td>
+            <td class="">0.54</td>
+            <td class="">0.85</td>
+            <td class="">10225</td>
+            <td class="">3236</td>
+            <td class="">3286808, 3286815, 3286839</td>
+          </tr>
+          <tr>
+            <td class="">[U:1:80080450]</td>
+            <td class="">MY teejay</td>
+            <td class="">82</td>
+            <td class="">76</td>
+            <td class="">37</td>
+            <td class="">332.56</td>
+            <td class="">1.08</td>
+            <td class="">1.57</td>
+            <td class="">35867</td>
+            <td class="">6471</td>
+            <td class="">3286809, 3286814, 3286827, 3286840, 3287447</td>
+          </tr>
+          <tr>
+            <td class="">[U:1:181496391]</td>
+            <td class="">Raiz</td>
+            <td class="">24</td>
+            <td class="">47</td>
+            <td class="">6</td>
+            <td class="">220.70</td>
+            <td class="">0.51</td>
+            <td class="">0.64</td>
+            <td class="">12179</td>
+            <td class="">3311</td>
+            <td class="">3286809, 3286826</td>
+          </tr>
+          <tr>
+            <td class="">[U:1:331394858]</td>
+            <td class="">MY hezzy</td>
+            <td class="">103</td>
+            <td class="">164</td>
+            <td class="">50</td>
+            <td class="">255.17</td>
+            <td class="">0.63</td>
+            <td class="">0.93</td>
+            <td class="">46020</td>
+            <td class="">10821</td>
+            <td class="">3286809, 3286814, 3286827, 3286840, 3286864, 3287470, 3287492, 3287498</td>
+          </tr>
+          <tr>
+            <td class="">[U:1:150335547]</td>
+            <td class="">VN Sync</td>
+            <td class="">22</td>
+            <td class="">34</td>
+            <td class="">12</td>
+            <td class="">244.71</td>
+            <td class="">0.65</td>
+            <td class="">1.00</td>
+            <td class="">13504</td>
+            <td class="">3311</td>
+            <td class="">3286809, 3286826</td>
+          </tr>
+          <tr>
+            <td class="">[U:1:96055286]</td>
+            <td class="">HK Starling</td>
+            <td class="">49</td>
+            <td class="">103</td>
+            <td class="">22</td>
+            <td class="">227.29</td>
+            <td class="">0.48</td>
+            <td class="">0.69</td>
+            <td class="">27328</td>
+            <td class="">7214</td>
+            <td class="">3286814, 3286826, 3286842, 3286865</td>
+          </tr>
+          <tr>
+            <td class="">[U:1:135012986]</td>
+            <td class="">HK banana</td>
+            <td class="">63</td>
+            <td class="">110</td>
+            <td class="">23</td>
+            <td class="">227.49</td>
+            <td class="">0.57</td>
+            <td class="">0.78</td>
+            <td class="">27344</td>
+            <td class="">7212</td>
+            <td class="">3286814, 3286826, 3286842, 3286865</td>
+          </tr>
+          <tr>
+            <td class="">[U:1:123610484]</td>
+            <td class="">TH Corde</td>
+            <td class="">24</td>
+            <td class="">40</td>
+            <td class="">8</td>
+            <td class="">195.75</td>
+            <td class="">0.60</td>
+            <td class="">0.80</td>
+            <td class="">8313</td>
+            <td class="">2548</td>
+            <td class="">3286820, 3286828</td>
+          </tr>
+          <tr>
+            <td class="">[U:1:170998559]</td>
+            <td class="">MY altaria</td>
+            <td class="">60</td>
+            <td class="">98</td>
+            <td class="">20</td>
+            <td class="">236.37</td>
+            <td class="">0.61</td>
+            <td class="">0.82</td>
+            <td class="">27222</td>
+            <td class="">6910</td>
+            <td class="">3286840, 3286864, 3287447, 3287470, 3287492, 3287498</td>
+          </tr>
+          <tr>
+            <td class="">[U:1:114873466]</td>
+            <td class="">SG Smily</td>
+            <td class="">89</td>
+            <td class="">158</td>
+            <td class="">32</td>
+            <td class="">230.80</td>
+            <td class="">0.56</td>
+            <td class="">0.77</td>
+            <td class="">41941</td>
+            <td class="">10903</td>
+            <td class="">3286839, 3287447, 3287482, 3287519, 3287549, 3287557, 3287567</td>
+          </tr>
+          <tr>
+            <td class="">[U:1:33227167]</td>
+            <td class="">TH Birdfly</td>
+            <td class="">28</td>
+            <td class="">29</td>
+            <td class="">11</td>
+            <td class="">296.58</td>
+            <td class="">0.97</td>
+            <td class="">1.34</td>
+            <td class="">9723</td>
+            <td class="">1967</td>
+            <td class="">3287492, 3287498, 3287557</td>
+          </tr>
+          <tr>
+            <td class="">[U:1:218107249]</td>
+            <td class="">TW ukk</td>
+            <td class="">0</td>
+            <td class="">2</td>
+            <td class="">1</td>
+            <td class="">110.77</td>
+            <td class="">0.00</td>
+            <td class="">0.50</td>
+            <td class="">48</td>
+            <td class="">26</td>
+            <td class="">3286808, 3286815</td>
+          </tr>
+          <tr>
+            <td class="">[U:1:331394858]</td>
+            <td class="">MY hezzy</td>
+            <td class="">0</td>
+            <td class="">1</td>
+            <td class="">0</td>
+            <td class="">185.29</td>
+            <td class="">0.00</td>
+            <td class="">0.00</td>
+            <td class="">105</td>
+            <td class="">34</td>
+            <td class="">3286814</td>
+          </tr>
+          <tr>
+            <td class="">[U:1:312605197]</td>
+            <td class="">TH heria</td>
+            <td class="">1</td>
+            <td class="">2</td>
+            <td class="">0</td>
+            <td class="">45.44</td>
+            <td class="">0.50</td>
+            <td class="">0.50</td>
+            <td class="">78</td>
+            <td class="">103</td>
+            <td class="">3286820, 3287557, 3287567</td>
+          </tr>
+          <tr>
+            <td class="">[U:1:33227167]</td>
+            <td class="">TH Birdfly</td>
+            <td class="">1</td>
+            <td class="">3</td>
+            <td class="">1</td>
+            <td class="">478.85</td>
+            <td class="">0.33</td>
+            <td class="">0.67</td>
+            <td class="">415</td>
+            <td class="">52</td>
+            <td class="">3286864, 3287482, 3287567</td>
+          </tr>
+          <tr>
+            <td class="">[U:1:183670774]</td>
+            <td class="">KR Stryker</td>
+            <td class="">1</td>
+            <td class="">1</td>
+            <td class="">0</td>
+            <td class="">286.91</td>
+            <td class="">1.00</td>
+            <td class="">1.00</td>
+            <td class="">263</td>
+            <td class="">55</td>
+            <td class="">3286865, 3287470</td>
+          </tr>
+          <tr>
+            <td class="">[U:1:105996834]</td>
+            <td class="">TH Luv</td>
+            <td class="">3</td>
+            <td class="">3</td>
+            <td class="">2</td>
+            <td class="">300.65</td>
+            <td class="">1.00</td>
+            <td class="">1.67</td>
+            <td class="">927</td>
+            <td class="">185</td>
+            <td class="">3287519, 3287549, 3287567</td>
+          </tr>
+          <tr>
+            <td class="">[U:1:90306326]</td>
+            <td class="">SG Ry4n</td>
+            <td class="">174</td>
+            <td class="">112</td>
+            <td class="">70</td>
+            <td class="">323.53</td>
+            <td class="">1.55</td>
+            <td class="">2.18</td>
+            <td class="">81248</td>
+            <td class="">15068</td>
+            <td class="">3286805, 3286820, 3286827, 3286839, 3287447, 3287482, 3287519, 3287549, 3287557, 3287567</td>
+          </tr>
+          <tr>
+            <td class="">[U:1:1010126009]</td>
+            <td class="">KR h3kf</td>
+            <td class="">89</td>
+            <td class="">85</td>
+            <td class="">33</td>
+            <td class="">274.96</td>
+            <td class="">1.05</td>
+            <td class="">1.44</td>
+            <td class="">45964</td>
+            <td class="">10030</td>
+            <td class="">3286805, 3286815, 3286828, 3286840, 3286865, 3287470, 3287457</td>
+          </tr>
+          <tr>
+            <td class="">[U:1:1226259413]</td>
+            <td class="">TW kosina</td>
+            <td class="">44</td>
+            <td class="">41</td>
+            <td class="">7</td>
+            <td class="">341.44</td>
+            <td class="">1.07</td>
+            <td class="">1.24</td>
+            <td class="">18415</td>
+            <td class="">3236</td>
+            <td class="">3286808, 3286815, 3286839</td>
+          </tr>
+          <tr>
+            <td class="">[U:1:372506454]</td>
+            <td class="">TH Crusky</td>
+            <td class="">199</td>
+            <td class="">171</td>
+            <td class="">73</td>
+            <td class="">281.29</td>
+            <td class="">1.16</td>
+            <td class="">1.59</td>
+            <td class="">95579</td>
+            <td class="">20387</td>
+            <td class="">3286808, 3286820, 3286828, 3286842, 3286864, 3287457, 3287482, 3287492, 3287498, 3287519, 3287549, 3287557, 3287567</td>
+          </tr>
+          <tr>
+            <td class="">[U:1:111899967]</td>
+            <td class="">VN Gh0sty</td>
+            <td class="">33</td>
+            <td class="">32</td>
+            <td class="">13</td>
+            <td class="">355.98</td>
+            <td class="">1.03</td>
+            <td class="">1.44</td>
+            <td class="">19644</td>
+            <td class="">3311</td>
+            <td class="">3286809, 3286826</td>
+          </tr>
+          <tr>
+            <td class="">[U:1:170998559]</td>
+            <td class="">MY altaria</td>
+            <td class="">30</td>
+            <td class="">51</td>
+            <td class="">18</td>
+            <td class="">264.99</td>
+            <td class="">0.59</td>
+            <td class="">0.94</td>
+            <td class="">23014</td>
+            <td class="">5211</td>
+            <td class="">3286809, 3286814, 3286827, 3286840</td>
+          </tr>
+          <tr>
+            <td class="">[U:1:106487076]</td>
+            <td class="">HK konma</td>
+            <td class="">65</td>
+            <td class="">53</td>
+            <td class="">35</td>
+            <td class="">314.10</td>
+            <td class="">1.23</td>
+            <td class="">1.89</td>
+            <td class="">37765</td>
+            <td class="">7214</td>
+            <td class="">3286814, 3286826, 3286842, 3286865</td>
+          </tr>
+          <tr>
+            <td class="">[U:1:80080450]</td>
+            <td class="">MY teejay</td>
+            <td class="">0</td>
+            <td class="">2</td>
+            <td class="">1</td>
+            <td class="">464.29</td>
+            <td class="">0.00</td>
+            <td class="">0.50</td>
+            <td class="">650</td>
+            <td class="">84</td>
+            <td class="">3286840</td>
+          </tr>
+          <tr>
+            <td class="">[U:1:136192075]</td>
+            <td class="">MY Veron</td>
+            <td class="">52</td>
+            <td class="">58</td>
+            <td class="">23</td>
+            <td class="">250.08</td>
+            <td class="">0.90</td>
+            <td class="">1.29</td>
+            <td class="">28538</td>
+            <td class="">6847</td>
+            <td class="">3286864, 3287447, 3287470, 3287492, 3287498</td>
+          </tr>
+          <tr>
+            <td class="">[U:1:1126684222]</td>
+            <td class="">KR Vinea</td>
+            <td class="">3</td>
+            <td class="">0</td>
+            <td class="">2</td>
+            <td class="">739.64</td>
+            <td class="">Infinity</td>
+            <td class="">Infinity</td>
+            <td class="">678</td>
+            <td class="">55</td>
+            <td class="">3286805, 3287457</td>
+          </tr>
+          <tr>
+            <td class="">[U:1:48645190]</td>
+            <td class="">TW butterfly</td>
+            <td class="">1</td>
+            <td class="">1</td>
+            <td class="">1</td>
+            <td class="">292.17</td>
+            <td class="">1.00</td>
+            <td class="">2.00</td>
+            <td class="">336</td>
+            <td class="">69</td>
+            <td class="">3286808, 3286839</td>
+          </tr>
+          <tr>
+            <td class="">[U:1:139041873]</td>
+            <td class="">VN teehee</td>
+            <td class="">0</td>
+            <td class="">0</td>
+            <td class="">1</td>
+            <td class="">604.44</td>
+            <td class="">NaN</td>
+            <td class="">Infinity</td>
+            <td class="">272</td>
+            <td class="">27</td>
+            <td class="">3286809</td>
+          </tr>
+          <tr>
+            <td class="">[U:1:396627941]</td>
+            <td class="">MY jub</td>
+            <td class="">0</td>
+            <td class="">1</td>
+            <td class="">0</td>
+            <td class="">143.33</td>
+            <td class="">0.00</td>
+            <td class="">0.00</td>
+            <td class="">86</td>
+            <td class="">36</td>
+            <td class="">3286814</td>
+          </tr>
+          <tr>
+            <td class="">[U:1:33227167]</td>
+            <td class="">TH Birdfly</td>
+            <td class="">1</td>
+            <td class="">2</td>
+            <td class="">2</td>
+            <td class="">272.88</td>
+            <td class="">0.50</td>
+            <td class="">1.50</td>
+            <td class="">473</td>
+            <td class="">104</td>
+            <td class="">3286820, 3286842, 3287519</td>
+          </tr>
+          <tr>
+            <td class="">[U:1:105996834]</td>
+            <td class="">TH Luv</td>
+            <td class="">1</td>
+            <td class="">4</td>
+            <td class="">2</td>
+            <td class="">254.63</td>
+            <td class="">0.25</td>
+            <td class="">0.75</td>
+            <td class="">679</td>
+            <td class="">160</td>
+            <td class="">3286864, 3287457, 3287519, 3287567</td>
+          </tr>
+          <tr>
+            <td class="">[U:1:1321242748]</td>
+            <td class="">MY Doklalodka</td>
+            <td class="">1</td>
+            <td class="">4</td>
+            <td class="">1</td>
+            <td class="">353.92</td>
+            <td class="">0.25</td>
+            <td class="">0.50</td>
+            <td class="">466</td>
+            <td class="">79</td>
+            <td class="">3287447</td>
+          </tr>
+          <tr>
+            <td class="">[U:1:183670774]</td>
+            <td class="">KR Stryker</td>
+            <td class="">0</td>
+            <td class="">2</td>
+            <td class="">0</td>
+            <td class="">219.17</td>
+            <td class="">0.00</td>
+            <td class="">0.00</td>
+            <td class="">263</td>
+            <td class="">72</td>
+            <td class="">3287470, 3287457</td>
+          </tr>
+          <tr>
+            <td class="">[U:1:205675480]</td>
+            <td class="">SG jpd</td>
+            <td class="">4</td>
+            <td class="">2</td>
+            <td class="">4</td>
+            <td class="">703.08</td>
+            <td class="">2.00</td>
+            <td class="">4.00</td>
+            <td class="">914</td>
+            <td class="">78</td>
+            <td class="">3287482, 3287519, 3287549, 3287567</td>
+          </tr>
+          <tr>
+            <td class="">[U:1:312605197]</td>
+            <td class="">TH heria</td>
+            <td class="">1</td>
+            <td class="">0</td>
+            <td class="">2</td>
+            <td class="">946.50</td>
+            <td class="">Infinity</td>
+            <td class="">Infinity</td>
+            <td class="">631</td>
+            <td class="">40</td>
+            <td class="">3287498</td>
+          </tr>
+          <tr>
+            <td class="">[U:1:143476343]</td>
+            <td class="">MY apples</td>
+            <td class="">2</td>
+            <td class="">0</td>
+            <td class="">0</td>
+            <td class="">803.33</td>
+            <td class="">Infinity</td>
+            <td class="">Infinity</td>
+            <td class="">241</td>
+            <td class="">18</td>
+            <td class="">3287498</td>
+          </tr>
+          <tr>
+            <td class="">[U:1:1059335465]</td>
+            <td class="">SG ruee</td>
+            <td class="">3</td>
+            <td class="">0</td>
+            <td class="">0</td>
+            <td class="">981.29</td>
+            <td class="">Infinity</td>
+            <td class="">Infinity</td>
+            <td class="">507</td>
+            <td class="">31</td>
+            <td class="">3287567</td>
+          </tr>
+          <tr>
+            <td class="">[U:1:308396328]</td>
+            <td class="">TH DowWy</td>
+            <td class="">2</td>
+            <td class="">1</td>
+            <td class="">0</td>
+            <td class="">260.00</td>
+            <td class="">2.00</td>
+            <td class="">2.00</td>
+            <td class="">52</td>
+            <td class="">12</td>
+            <td class="">3287567</td>
+          </tr>
+          <tr>
+            <td class="">[U:1:205675480]</td>
+            <td class="">SG jpd</td>
+            <td class="">3</td>
+            <td class="">0</td>
+            <td class="">3</td>
+            <td class="">335.92</td>
+            <td class="">Infinity</td>
+            <td class="">Infinity</td>
+            <td class="">1758</td>
+            <td class="">314</td>
+            <td class="">3286805, 3287482, 3287549, 3287567</td>
+          </tr>
+          <tr>
+            <td class="">[U:1:1126684222]</td>
+            <td class="">KR Vinea</td>
+            <td class="">0</td>
+            <td class="">0</td>
+            <td class="">0</td>
+            <td class="">70.55</td>
+            <td class="">NaN</td>
+            <td class="">NaN</td>
+            <td class="">107</td>
+            <td class="">91</td>
+            <td class="">3286805</td>
+          </tr>
+          <tr>
+            <td class="">[U:1:48645190]</td>
+            <td class="">TW butterfly</td>
+            <td class="">1</td>
+            <td class="">2</td>
+            <td class="">0</td>
+            <td class="">137.48</td>
+            <td class="">0.50</td>
+            <td class="">0.50</td>
+            <td class="">763</td>
+            <td class="">333</td>
+            <td class="">3286808, 3286815, 3286839</td>
+          </tr>
+          <tr>
+            <td class="">[U:1:312605197]</td>
+            <td class="">TH heria</td>
+            <td class="">0</td>
+            <td class="">0</td>
+            <td class="">0</td>
+            <td class="">69.64</td>
+            <td class="">NaN</td>
+            <td class="">NaN</td>
+            <td class="">159</td>
+            <td class="">137</td>
+            <td class="">3286820, 3287498</td>
+          </tr>
+          <tr>
+            <td class="">[U:1:33227167]</td>
+            <td class="">TH Birdfly</td>
+            <td class="">6</td>
+            <td class="">3</td>
+            <td class="">6</td>
+            <td class="">122.57</td>
+            <td class="">2.00</td>
+            <td class="">4.00</td>
+            <td class="">3146</td>
+            <td class="">1540</td>
+            <td class="">3286820, 3286842, 3287457, 3287482, 3287519, 3287549, 3287567</td>
+          </tr>
+          <tr>
+            <td class="">[U:1:143476343]</td>
+            <td class="">MY apples</td>
+            <td class="">1</td>
+            <td class="">0</td>
+            <td class="">1</td>
+            <td class="">104.36</td>
+            <td class="">Infinity</td>
+            <td class="">Infinity</td>
+            <td class="">734</td>
+            <td class="">422</td>
+            <td class="">3286840, 3286864, 3287470</td>
+          </tr>
+          <tr>
+            <td class="">[U:1:87007493]</td>
+            <td class="">TW Hopps</td>
+            <td class="">0</td>
+            <td class="">0</td>
+            <td class="">1</td>
+            <td class="">317.65</td>
+            <td class="">NaN</td>
+            <td class="">Infinity</td>
+            <td class="">180</td>
+            <td class="">34</td>
+            <td class="">3286839</td>
+          </tr>
+          <tr>
+            <td class="">[U:1:135277248]</td>
+            <td class="">HK sir9</td>
+            <td class="">1</td>
+            <td class="">0</td>
+            <td class="">2</td>
+            <td class="">152.22</td>
+            <td class="">Infinity</td>
+            <td class="">Infinity</td>
+            <td class="">515</td>
+            <td class="">203</td>
+            <td class="">3286842, 3286865</td>
+          </tr>
+          <tr>
+            <td class="">[U:1:1321242748]</td>
+            <td class="">MY Doklalodka</td>
+            <td class="">2</td>
+            <td class="">1</td>
+            <td class="">3</td>
+            <td class="">102.54</td>
+            <td class="">2.00</td>
+            <td class="">5.00</td>
+            <td class="">687</td>
+            <td class="">402</td>
+            <td class="">3287447</td>
+          </tr>
+          <tr>
+            <td class="">[U:1:105996834]</td>
+            <td class="">TH Luv</td>
+            <td class="">0</td>
+            <td class="">4</td>
+            <td class="">3</td>
+            <td class="">54.04</td>
+            <td class="">0.00</td>
+            <td class="">0.75</td>
+            <td class="">626</td>
+            <td class="">695</td>
+            <td class="">3287457, 3287482, 3287498</td>
+          </tr>
+          <tr>
+            <td class="">[U:1:1059335465]</td>
+            <td class="">SG ruee</td>
+            <td class="">0</td>
+            <td class="">0</td>
+            <td class="">0</td>
+            <td class="">127.89</td>
+            <td class="">NaN</td>
+            <td class="">NaN</td>
+            <td class="">162</td>
+            <td class="">76</td>
+            <td class="">3287567</td>
+          </tr>
+          <tr>
+            <td class="">[U:1:196913090]</td>
+            <td class="">SG K1lled</td>
+            <td class="">15</td>
+            <td class="">67</td>
+            <td class="">144</td>
+            <td class="">14.93</td>
+            <td class="">0.22</td>
+            <td class="">2.37</td>
+            <td class="">3749</td>
+            <td class="">15066</td>
+            <td class="">3286805, 3286820, 3286827, 3286839, 3287447, 3287482, 3287519, 3287549, 3287557, 3287567</td>
+          </tr>
+          <tr>
+            <td class="">[U:1:250021149]</td>
+            <td class="">KR song</td>
+            <td class="">7</td>
+            <td class="">57</td>
+            <td class="">104</td>
+            <td class="">17.00</td>
+            <td class="">0.12</td>
+            <td class="">1.95</td>
+            <td class="">2841</td>
+            <td class="">10027</td>
+            <td class="">3286805, 3286815, 3286828, 3286840, 3286865, 3287470, 3287457</td>
+          </tr>
+          <tr>
+            <td class="">[U:1:87007493]</td>
+            <td class="">TW Hopps</td>
+            <td class="">3</td>
+            <td class="">20</td>
+            <td class="">19</td>
+            <td class="">11.94</td>
+            <td class="">0.15</td>
+            <td class="">1.10</td>
+            <td class="">426</td>
+            <td class="">2140</td>
+            <td class="">3286808, 3286815</td>
+          </tr>
+          <tr>
+            <td class="">[U:1:392106977]</td>
+            <td class="">TH Kpopbobo</td>
+            <td class="">9</td>
+            <td class="">109</td>
+            <td class="">201</td>
+            <td class="">10.03</td>
+            <td class="">0.08</td>
+            <td class="">1.93</td>
+            <td class="">3408</td>
+            <td class="">20393</td>
+            <td class="">3286808, 3286820, 3286828, 3286842, 3286864, 3287457, 3287482, 3287492, 3287498, 3287519, 3287549, 3287557, 3287567</td>
+          </tr>
+          <tr>
+            <td class="">[U:1:191310610]</td>
+            <td class="">VN Cry</td>
+            <td class="">1</td>
+            <td class="">13</td>
+            <td class="">18</td>
+            <td class="">11.82</td>
+            <td class="">0.08</td>
+            <td class="">1.46</td>
+            <td class="">652</td>
+            <td class="">3311</td>
+            <td class="">3286809, 3286826</td>
+          </tr>
+          <tr>
+            <td class="">[U:1:195741321]</td>
+            <td class="">MY farn</td>
+            <td class="">5</td>
+            <td class="">63</td>
+            <td class="">93</td>
+            <td class="">8.48</td>
+            <td class="">0.08</td>
+            <td class="">1.56</td>
+            <td class="">1716</td>
+            <td class="">12146</td>
+            <td class="">3286809, 3286814, 3286827, 3286840, 3286864, 3287447, 3287470, 3287492, 3287498</td>
+          </tr>
+          <tr>
+            <td class="">[U:1:99049726]</td>
+            <td class="">HK Striker</td>
+            <td class="">1</td>
+            <td class="">40</td>
+            <td class="">63</td>
+            <td class="">9.81</td>
+            <td class="">0.03</td>
+            <td class="">1.60</td>
+            <td class="">1180</td>
+            <td class="">7214</td>
+            <td class="">3286814, 3286826, 3286842, 3286865</td>
+          </tr>
+          <tr>
+            <td class="">[U:1:926069803]</td>
+            <td class="">TW catwif</td>
+            <td class="">2</td>
+            <td class="">11</td>
+            <td class="">6</td>
+            <td class="">16.08</td>
+            <td class="">0.18</td>
+            <td class="">0.73</td>
+            <td class="">293</td>
+            <td class="">1093</td>
+            <td class="">3286815, 3286839</td>
+          </tr>
+          <tr>
+            <td class="">[U:1:96363292]</td>
+            <td class="">SG n4ver</td>
+            <td class="">6</td>
+            <td class="">5</td>
+            <td class="">0</td>
+            <td class="">151.23</td>
+            <td class="">1.20</td>
+            <td class="">1.20</td>
+            <td class="">1225</td>
+            <td class="">486</td>
+            <td class="">3286805, 3286839, 3287519, 3287549, 3287557</td>
+          </tr>
+          <tr>
+            <td class="">[U:1:1126684222]</td>
+            <td class="">KR Vinea</td>
+            <td class="">4</td>
+            <td class="">3</td>
+            <td class="">0</td>
+            <td class="">265.71</td>
+            <td class="">1.33</td>
+            <td class="">1.33</td>
+            <td class="">1736</td>
+            <td class="">392</td>
+            <td class="">3286805, 3286815, 3286840, 3286865</td>
+          </tr>
+          <tr>
+            <td class="">[U:1:48645190]</td>
+            <td class="">TW butterfly</td>
+            <td class="">1</td>
+            <td class="">0</td>
+            <td class="">0</td>
+            <td class="">350.65</td>
+            <td class="">Infinity</td>
+            <td class="">Infinity</td>
+            <td class="">450</td>
+            <td class="">77</td>
+            <td class="">3286815</td>
+          </tr>
+          <tr>
+            <td class="">[U:1:183670774]</td>
+            <td class="">KR Stryker</td>
+            <td class="">3</td>
+            <td class="">4</td>
+            <td class="">0</td>
+            <td class="">279.32</td>
+            <td class="">0.75</td>
+            <td class="">0.75</td>
+            <td class="">1783</td>
+            <td class="">383</td>
+            <td class="">3286815, 3286865, 3287470</td>
+          </tr>
+          <tr>
+            <td class="">[U:1:312605197]</td>
+            <td class="">TH heria</td>
+            <td class="">47</td>
+            <td class="">22</td>
+            <td class="">13</td>
+            <td class="">284.51</td>
+            <td class="">2.14</td>
+            <td class="">2.73</td>
+            <td class="">13979</td>
+            <td class="">2948</td>
+            <td class="">3286842, 3286864, 3287457, 3287482, 3287492, 3287498, 3287549, 3287557, 3287567</td>
+          </tr>
+          <tr>
+            <td class="">[U:1:338884682]</td>
+            <td class="">HK Joe</td>
+            <td class="">0</td>
+            <td class="">0</td>
+            <td class="">0</td>
+            <td class="">0.00</td>
+            <td class="">NaN</td>
+            <td class="">NaN</td>
+            <td class="">0</td>
+            <td class="">93</td>
+            <td class="">3286842</td>
+          </tr>
+          <tr>
+            <td class="">[U:1:135277248]</td>
+            <td class="">HK sir9</td>
+            <td class="">2</td>
+            <td class="">0</td>
+            <td class="">0</td>
+            <td class="">291.67</td>
+            <td class="">Infinity</td>
+            <td class="">Infinity</td>
+            <td class="">700</td>
+            <td class="">144</td>
+            <td class="">3286842, 3286865</td>
+          </tr>
+          <tr>
+            <td class="">[U:1:80080450]</td>
+            <td class="">MY teejay</td>
+            <td class="">3</td>
+            <td class="">0</td>
+            <td class="">0</td>
+            <td class="">646.99</td>
+            <td class="">Infinity</td>
+            <td class="">Infinity</td>
+            <td class="">895</td>
+            <td class="">83</td>
+            <td class="">3287447, 3287498</td>
+          </tr>
+          <tr>
+            <td class="">[U:1:1059335465]</td>
+            <td class="">SG ruee</td>
+            <td class="">2</td>
+            <td class="">2</td>
+            <td class="">0</td>
+            <td class="">316.69</td>
+            <td class="">1.00</td>
+            <td class="">1.00</td>
+            <td class="">702</td>
+            <td class="">133</td>
+            <td class="">3287482, 3287519, 3287549</td>
+          </tr>
+          <tr>
+            <td class="">[U:1:105996834]</td>
+            <td class="">TH Luv</td>
+            <td class="">1</td>
+            <td class="">3</td>
+            <td class="">0</td>
+            <td class="">119.51</td>
+            <td class="">0.33</td>
+            <td class="">0.33</td>
+            <td class="">243</td>
+            <td class="">122</td>
+            <td class="">3287498, 3287519, 3287549, 3287567</td>
+          </tr>
+          <tr>
+            <td class="">[U:1:205675480]</td>
+            <td class="">SG jpd</td>
+            <td class="">0</td>
+            <td class="">0</td>
+            <td class="">0</td>
+            <td class="">49.35</td>
+            <td class="">NaN</td>
+            <td class="">NaN</td>
+            <td class="">51</td>
+            <td class="">62</td>
+            <td class="">3287567</td>
+          </tr>
+          <tr>
+            <td class="">[U:1:105996834]</td>
+            <td class="">TH Luv</td>
+            <td class="">5</td>
+            <td class="">8</td>
+            <td class="">0</td>
+            <td class="">152.80</td>
+            <td class="">0.63</td>
+            <td class="">0.63</td>
+            <td class="">1528</td>
+            <td class="">600</td>
+            <td class="">3286808, 3286842, 3286864, 3287482, 3287498, 3287549, 3287567</td>
+          </tr>
+          <tr>
+            <td class="">[U:1:183670774]</td>
+            <td class="">KR Stryker</td>
+            <td class="">3</td>
+            <td class="">4</td>
+            <td class="">1</td>
+            <td class="">227.11</td>
+            <td class="">0.75</td>
+            <td class="">1.00</td>
+            <td class="">1075</td>
+            <td class="">284</td>
+            <td class="">3286815, 3286865, 3287457</td>
+          </tr>
+          <tr>
+            <td class="">[U:1:1126684222]</td>
+            <td class="">KR Vinea</td>
+            <td class="">1</td>
+            <td class="">2</td>
+            <td class="">0</td>
+            <td class="">269.29</td>
+            <td class="">0.50</td>
+            <td class="">0.50</td>
+            <td class="">570</td>
+            <td class="">127</td>
+            <td class="">3286815, 3286865</td>
+          </tr>
+          <tr>
+            <td class="">[U:1:114873466]</td>
+            <td class="">SG Smily</td>
+            <td class="">1</td>
+            <td class="">3</td>
+            <td class="">0</td>
+            <td class="">183.67</td>
+            <td class="">0.33</td>
+            <td class="">0.33</td>
+            <td class="">450</td>
+            <td class="">147</td>
+            <td class="">3287447, 3287519, 3287549</td>
+          </tr>
+      </tbody>
+      </table>
+    </div>
+
+    <div id="scout" class="table-shown">
+      <h3>Scouts</h3>
+      <table id="scoutStats" class="js-sort-table">
+      <thead>
+        <tr>
+          <th class="js-sort-number">Steam ID</td>
+          <th class="js-sort-number">Aliases</td>
+          <th class="js-sort-number">Kills</td>
+          <th class="js-sort-number">Deaths</td>
+          <th class="js-sort-number">Assists</td>
+          <th class="js-sort-number">DPM</td>
+          <th class="js-sort-number">DTM</td>
+          <th class="js-sort-number">DPM - DTM</td>
+          <th class="js-sort-number">K/D</td>
+          <th class="js-sort-number">KA/D</td>
+          <th class="js-sort-number">K/30m</th>
+          <th class="js-sort-number">D/30m</th>
+          <th class="js-sort-number">Total Damage</td>
+          <th class="js-sort-number">Total Time (s)</td>
+          <th class="js-sort-number">Logs</td>
+        </tr>
+      </thead>
+      <tbody>
+          <tr>
+            <td class="">[U:1:205675480]</td>
+            <td class="">SG jpd</td>
+            <td class="">198</td>
+            <td class="">129</td>
+            <td class="">108</td>
+            <td class="">250.03</td>
+            <td class="">185.13</td>
+            <td class="">64.89</td>
+            <td class="">1.53</td>
+            <td class="">2.37</td>
+            <td class="">24.53</td>
+            <td class="">15.98</td>
+            <td class="">60548</td>
+            <td class="">14530</td>
+            <td class=""><a href="https://logs.tf/3286805">3286805</a>, <a href="https://logs.tf/3286820">3286820</a>, <a href="https://logs.tf/3286827">3286827</a>, <a href="https://logs.tf/3286839">3286839</a>, <a href="https://logs.tf/3287447">3287447</a>, <a href="https://logs.tf/3287482">3287482</a>, <a href="https://logs.tf/3287519">3287519</a>, <a href="https://logs.tf/3287549">3287549</a>, <a href="https://logs.tf/3287557">3287557</a>, <a href="https://logs.tf/3287567">3287567</a>, </td>
+          </tr>
+          <tr>
+            <td class="">[U:1:178618060]</td>
+            <td class="">starli</td>
+            <td class="">36</td>
+            <td class="">21</td>
+            <td class="">16</td>
+            <td class="">259.66</td>
+            <td class="">206.43</td>
+            <td class="">53.23</td>
+            <td class="">1.71</td>
+            <td class="">2.48</td>
+            <td class="">26.21</td>
+            <td class="">15.29</td>
+            <td class="">10698</td>
+            <td class="">2472</td>
+            <td class=""><a href="https://logs.tf/3286805">3286805</a>, <a href="https://logs.tf/3286820">3286820</a>, </td>
+          </tr>
+          <tr>
+            <td class="">[U:1:183670774]</td>
+            <td class="">KR Stryker</td>
+            <td class="">156</td>
+            <td class="">67</td>
+            <td class="">73</td>
+            <td class="">306.20</td>
+            <td class="">244.16</td>
+            <td class="">62.04</td>
+            <td class="">2.33</td>
+            <td class="">3.42</td>
+            <td class="">30.41</td>
+            <td class="">13.06</td>
+            <td class="">47129</td>
+            <td class="">9235</td>
+            <td class=""><a href="https://logs.tf/3286805">3286805</a>, <a href="https://logs.tf/3286815">3286815</a>, <a href="https://logs.tf/3286828">3286828</a>, <a href="https://logs.tf/3286840">3286840</a>, <a href="https://logs.tf/3286865">3286865</a>, <a href="https://logs.tf/3287470">3287470</a>, <a href="https://logs.tf/3287457">3287457</a>, </td>
+          </tr>
+          <tr>
+            <td class="">[U:1:1126684222]</td>
+            <td class="">KR Vinea</td>
+            <td class="">129</td>
+            <td class="">93</td>
+            <td class="">81</td>
+            <td class="">254.83</td>
+            <td class="">195.59</td>
+            <td class="">59.25</td>
+            <td class="">1.39</td>
+            <td class="">2.26</td>
+            <td class="">25.07</td>
+            <td class="">18.07</td>
+            <td class="">39338</td>
+            <td class="">9262</td>
+            <td class=""><a href="https://logs.tf/3286805">3286805</a>, <a href="https://logs.tf/3286815">3286815</a>, <a href="https://logs.tf/3286828">3286828</a>, <a href="https://logs.tf/3286840">3286840</a>, <a href="https://logs.tf/3286865">3286865</a>, <a href="https://logs.tf/3287470">3287470</a>, <a href="https://logs.tf/3287457">3287457</a>, </td>
+          </tr>
+          <tr>
+            <td class="">[U:1:48645190]</td>
+            <td class="">TW butterfly</td>
+            <td class="">40</td>
+            <td class="">42</td>
+            <td class="">12</td>
+            <td class="">247.44</td>
+            <td class="">283.32</td>
+            <td class="">-35.89</td>
+            <td class="">0.95</td>
+            <td class="">1.24</td>
+            <td class="">26.72</td>
+            <td class="">28.05</td>
+            <td class="">11114</td>
+            <td class="">2695</td>
+            <td class=""><a href="https://logs.tf/3286808">3286808</a>, <a href="https://logs.tf/3286815">3286815</a>, <a href="https://logs.tf/3286839">3286839</a>, </td>
+          </tr>
+          <tr>
+            <td class="">[U:1:926069803]</td>
+            <td class="">TW catwif</td>
+            <td class="">22</td>
+            <td class="">22</td>
+            <td class="">14</td>
+            <td class="">242.02</td>
+            <td class="">315.75</td>
+            <td class="">-73.73</td>
+            <td class="">1.00</td>
+            <td class="">1.64</td>
+            <td class="">19.65</td>
+            <td class="">19.65</td>
+            <td class="">8128</td>
+            <td class="">2015</td>
+            <td class=""><a href="https://logs.tf/3286808">3286808</a>, <a href="https://logs.tf/3286815">3286815</a>, </td>
+          </tr>
+          <tr>
+            <td class="">[U:1:33227167]</td>
+            <td class="">TH Birdfly</td>
+            <td class="">260</td>
+            <td class="">182</td>
+            <td class="">134</td>
+            <td class="">274.21</td>
+            <td class="">274.45</td>
+            <td class="">-0.25</td>
+            <td class="">1.43</td>
+            <td class="">2.16</td>
+            <td class="">28.18</td>
+            <td class="">19.72</td>
+            <td class="">75910</td>
+            <td class="">16610</td>
+            <td class=""><a href="https://logs.tf/3286808">3286808</a>, <a href="https://logs.tf/3286820">3286820</a>, <a href="https://logs.tf/3286828">3286828</a>, <a href="https://logs.tf/3286842">3286842</a>, <a href="https://logs.tf/3286864">3286864</a>, <a href="https://logs.tf/3287457">3287457</a>, <a href="https://logs.tf/3287482">3287482</a>, <a href="https://logs.tf/3287492">3287492</a>, <a href="https://logs.tf/3287498">3287498</a>, <a href="https://logs.tf/3287519">3287519</a>, <a href="https://logs.tf/3287549">3287549</a>, <a href="https://logs.tf/3287557">3287557</a>, <a href="https://logs.tf/3287567">3287567</a>, </td>
+          </tr>
+          <tr>
+            <td class="">[U:1:105996834]</td>
+            <td class="">TH Luv</td>
+            <td class="">245</td>
+            <td class="">150</td>
+            <td class="">142</td>
+            <td class="">268.51</td>
+            <td class="">276.56</td>
+            <td class="">-8.05</td>
+            <td class="">1.63</td>
+            <td class="">2.58</td>
+            <td class="">27.73</td>
+            <td class="">16.98</td>
+            <td class="">71173</td>
+            <td class="">15904</td>
+            <td class=""><a href="https://logs.tf/3286808">3286808</a>, <a href="https://logs.tf/3286842">3286842</a>, <a href="https://logs.tf/3286864">3286864</a>, <a href="https://logs.tf/3287457">3287457</a>, <a href="https://logs.tf/3287482">3287482</a>, <a href="https://logs.tf/3287492">3287492</a>, <a href="https://logs.tf/3287498">3287498</a>, <a href="https://logs.tf/3287519">3287519</a>, <a href="https://logs.tf/3287549">3287549</a>, <a href="https://logs.tf/3287557">3287557</a>, <a href="https://logs.tf/3287567">3287567</a>, </td>
+          </tr>
+          <tr>
+            <td class="">[U:1:122196021]</td>
+            <td class="">VN DeDstar</td>
+            <td class="">51</td>
+            <td class="">30</td>
+            <td class="">24</td>
+            <td class="">333.04</td>
+            <td class="">264.59</td>
+            <td class="">68.44</td>
+            <td class="">1.70</td>
+            <td class="">2.50</td>
+            <td class="">27.73</td>
+            <td class="">16.31</td>
+            <td class="">18378</td>
+            <td class="">3311</td>
+            <td class=""><a href="https://logs.tf/3286809">3286809</a>, <a href="https://logs.tf/3286826">3286826</a>, </td>
+          </tr>
+          <tr>
+            <td class="">[U:1:396627941]</td>
+            <td class="">MY jub</td>
+            <td class="">45</td>
+            <td class="">59</td>
+            <td class="">28</td>
+            <td class="">171.72</td>
+            <td class="">200.26</td>
+            <td class="">-28.54</td>
+            <td class="">0.76</td>
+            <td class="">1.24</td>
+            <td class="">15.50</td>
+            <td class="">20.32</td>
+            <td class="">14957</td>
+            <td class="">5226</td>
+            <td class=""><a href="https://logs.tf/3286809">3286809</a>, <a href="https://logs.tf/3286814">3286814</a>, <a href="https://logs.tf/3286827">3286827</a>, <a href="https://logs.tf/3286840">3286840</a>, </td>
+          </tr>
+          <tr>
+            <td class="">[U:1:143476343]</td>
+            <td class="">MY apples</td>
+            <td class="">139</td>
+            <td class="">121</td>
+            <td class="">63</td>
+            <td class="">238.74</td>
+            <td class="">228.94</td>
+            <td class="">9.81</td>
+            <td class="">1.15</td>
+            <td class="">1.67</td>
+            <td class="">21.49</td>
+            <td class="">18.70</td>
+            <td class="">46336</td>
+            <td class="">11645</td>
+            <td class=""><a href="https://logs.tf/3286809">3286809</a>, <a href="https://logs.tf/3286814">3286814</a>, <a href="https://logs.tf/3286827">3286827</a>, <a href="https://logs.tf/3286840">3286840</a>, <a href="https://logs.tf/3286864">3286864</a>, <a href="https://logs.tf/3287447">3287447</a>, <a href="https://logs.tf/3287470">3287470</a>, <a href="https://logs.tf/3287492">3287492</a>, <a href="https://logs.tf/3287498">3287498</a>, </td>
+          </tr>
+          <tr>
+            <td class="">[U:1:139041873]</td>
+            <td class="">VN teehee</td>
+            <td class="">39</td>
+            <td class="">30</td>
+            <td class="">24</td>
+            <td class="">245.11</td>
+            <td class="">193.99</td>
+            <td class="">51.12</td>
+            <td class="">1.30</td>
+            <td class="">2.10</td>
+            <td class="">21.88</td>
+            <td class="">16.83</td>
+            <td class="">13105</td>
+            <td class="">3208</td>
+            <td class=""><a href="https://logs.tf/3286809">3286809</a>, <a href="https://logs.tf/3286826">3286826</a>, </td>
+          </tr>
+          <tr>
+            <td class="">[U:1:338884682]</td>
+            <td class="">HK Joe</td>
+            <td class="">108</td>
+            <td class="">54</td>
+            <td class="">56</td>
+            <td class="">293.31</td>
+            <td class="">255.12</td>
+            <td class="">38.19</td>
+            <td class="">2.00</td>
+            <td class="">3.04</td>
+            <td class="">27.67</td>
+            <td class="">13.83</td>
+            <td class="">34347</td>
+            <td class="">7026</td>
+            <td class=""><a href="https://logs.tf/3286814">3286814</a>, <a href="https://logs.tf/3286826">3286826</a>, <a href="https://logs.tf/3286842">3286842</a>, <a href="https://logs.tf/3286865">3286865</a>, </td>
+          </tr>
+          <tr>
+            <td class="">[U:1:135277248]</td>
+            <td class="">HK sir9</td>
+            <td class="">83</td>
+            <td class="">51</td>
+            <td class="">31</td>
+            <td class="">239.95</td>
+            <td class="">181.06</td>
+            <td class="">58.89</td>
+            <td class="">1.63</td>
+            <td class="">2.24</td>
+            <td class="">21.92</td>
+            <td class="">13.47</td>
+            <td class="">27254</td>
+            <td class="">6815</td>
+            <td class=""><a href="https://logs.tf/3286814">3286814</a>, <a href="https://logs.tf/3286826">3286826</a>, <a href="https://logs.tf/3286842">3286842</a>, <a href="https://logs.tf/3286865">3286865</a>, </td>
+          </tr>
+          <tr>
+            <td class="">[U:1:87007493]</td>
+            <td class="">TW Hopps</td>
+            <td class="">15</td>
+            <td class="">16</td>
+            <td class="">7</td>
+            <td class="">241.67</td>
+            <td class="">536.55</td>
+            <td class="">-294.88</td>
+            <td class="">0.94</td>
+            <td class="">1.38</td>
+            <td class="">25.91</td>
+            <td class="">27.64</td>
+            <td class="">4197</td>
+            <td class="">1042</td>
+            <td class=""><a href="https://logs.tf/3286815">3286815</a>, <a href="https://logs.tf/3286839">3286839</a>, </td>
+          </tr>
+          <tr>
+            <td class="">[U:1:312605197]</td>
+            <td class="">TH heria</td>
+            <td class="">76</td>
+            <td class="">33</td>
+            <td class="">35</td>
+            <td class="">340.74</td>
+            <td class="">380.76</td>
+            <td class="">-40.02</td>
+            <td class="">2.30</td>
+            <td class="">3.36</td>
+            <td class="">33.08</td>
+            <td class="">14.36</td>
+            <td class="">23488</td>
+            <td class="">4136</td>
+            <td class=""><a href="https://logs.tf/3286820">3286820</a>, <a href="https://logs.tf/3286828">3286828</a>, <a href="https://logs.tf/3287498">3287498</a>, <a href="https://logs.tf/3287557">3287557</a>, </td>
+          </tr>
+          <tr>
+            <td class="">[U:1:1059335465]</td>
+            <td class="">SG ruee</td>
+            <td class="">223</td>
+            <td class="">110</td>
+            <td class="">113</td>
+            <td class="">307.45</td>
+            <td class="">253.94</td>
+            <td class="">53.51</td>
+            <td class="">2.03</td>
+            <td class="">3.05</td>
+            <td class="">32.66</td>
+            <td class="">16.11</td>
+            <td class="">62987</td>
+            <td class="">12292</td>
+            <td class=""><a href="https://logs.tf/3286827">3286827</a>, <a href="https://logs.tf/3286839">3286839</a>, <a href="https://logs.tf/3287447">3287447</a>, <a href="https://logs.tf/3287482">3287482</a>, <a href="https://logs.tf/3287519">3287519</a>, <a href="https://logs.tf/3287549">3287549</a>, <a href="https://logs.tf/3287557">3287557</a>, <a href="https://logs.tf/3287567">3287567</a>, </td>
+          </tr>
+          <tr>
+            <td class="">[U:1:80080450]</td>
+            <td class="">MY teejay</td>
+            <td class="">114</td>
+            <td class="">36</td>
+            <td class="">53</td>
+            <td class="">341.59</td>
+            <td class="">260.55</td>
+            <td class="">81.03</td>
+            <td class="">3.17</td>
+            <td class="">4.64</td>
+            <td class="">37.31</td>
+            <td class="">11.78</td>
+            <td class="">31312</td>
+            <td class="">5500</td>
+            <td class=""><a href="https://logs.tf/3286864">3286864</a>, <a href="https://logs.tf/3287470">3287470</a>, <a href="https://logs.tf/3287492">3287492</a>, <a href="https://logs.tf/3287498">3287498</a>, </td>
+          </tr>
+          <tr>
+            <td class="">[U:1:1321242748]</td>
+            <td class="">MY Doklalodka</td>
+            <td class="">6</td>
+            <td class="">12</td>
+            <td class="">4</td>
+            <td class="">120.39</td>
+            <td class="">312.93</td>
+            <td class="">-192.54</td>
+            <td class="">0.50</td>
+            <td class="">0.83</td>
+            <td class="">13.94</td>
+            <td class="">27.87</td>
+            <td class="">1555</td>
+            <td class="">775</td>
+            <td class=""><a href="https://logs.tf/3287447">3287447</a>, </td>
+          </tr>
+      </tbody>
+      </table>
+    </div>
+
+    <div id="soldier" class="table-hidden">
+      <h3>Soldier</h3>
+      <table id="soldierStats" class="js-sort-table">
+      <thead>
+        <tr>
+          <th class="js-sort-number">Steam ID</td>
+          <th class="js-sort-number">Aliases</td>
+          <th class="js-sort-number">Kills</td>
+          <th class="js-sort-number">Deaths</td>
+          <th class="js-sort-number">Assists</td>
+          <th class="js-sort-number">DPM</td>
+          <th class="js-sort-number">DTM</td>
+          <th class="js-sort-number">DPM - DTM</td>
+          <th class="js-sort-number">K/D</td>
+          <th class="js-sort-number">KA/D</td>
+          <th class="js-sort-number">K/30m</th>
+          <th class="js-sort-number">D/30m</th>
+          <th class="js-sort-number">Total Damage</td>
+          <th class="js-sort-number">Total Time (s)</td>
+          <th class="js-sort-number">Logs</td>
+        </tr>
+      </thead>
+      <tbody>
+          <tr>
+            <td class="">[U:1:84155717]</td>
+            <td class="">sean</td>
+            <td class="">45</td>
+            <td class="">42</td>
+            <td class="">13</td>
+            <td class="">285.76</td>
+            <td class="">226.61</td>
+            <td class="">59.15</td>
+            <td class="">1.07</td>
+            <td class="">1.38</td>
+            <td class="">21.34</td>
+            <td class="">19.92</td>
+            <td class="">18079</td>
+            <td class="">3796</td>
+            <td class=""><a href="https://logs.tf/3286805">3286805</a>, <a href="https://logs.tf/3286820">3286820</a>, <a href="https://logs.tf/3286827">3286827</a>, </td>
+          </tr>
+          <tr>
+            <td class="">[U:1:96363292]</td>
+            <td class="">SG n4ver</td>
+            <td class="">167</td>
+            <td class="">199</td>
+            <td class="">63</td>
+            <td class="">273.61</td>
+            <td class="">275.31</td>
+            <td class="">-1.70</td>
+            <td class="">0.84</td>
+            <td class="">1.16</td>
+            <td class="">20.69</td>
+            <td class="">24.66</td>
+            <td class="">66245</td>
+            <td class="">14527</td>
+            <td class=""><a href="https://logs.tf/3286805">3286805</a>, <a href="https://logs.tf/3286820">3286820</a>, <a href="https://logs.tf/3286827">3286827</a>, <a href="https://logs.tf/3286839">3286839</a>, <a href="https://logs.tf/3287447">3287447</a>, <a href="https://logs.tf/3287482">3287482</a>, <a href="https://logs.tf/3287519">3287519</a>, <a href="https://logs.tf/3287549">3287549</a>, <a href="https://logs.tf/3287557">3287557</a>, <a href="https://logs.tf/3287567">3287567</a>, </td>
+          </tr>
+          <tr>
+            <td class="">[U:1:125463441]</td>
+            <td class="">Huey</td>
+            <td class="">111</td>
+            <td class="">137</td>
+            <td class="">25</td>
+            <td class="">233.08</td>
+            <td class="">225.91</td>
+            <td class="">7.17</td>
+            <td class="">0.81</td>
+            <td class="">0.99</td>
+            <td class="">19.91</td>
+            <td class="">24.57</td>
+            <td class="">38987</td>
+            <td class="">10036</td>
+            <td class=""><a href="https://logs.tf/3286805">3286805</a>, <a href="https://logs.tf/3286815">3286815</a>, <a href="https://logs.tf/3286828">3286828</a>, <a href="https://logs.tf/3286840">3286840</a>, <a href="https://logs.tf/3286865">3286865</a>, <a href="https://logs.tf/3287470">3287470</a>, <a href="https://logs.tf/3287457">3287457</a>, </td>
+          </tr>
+          <tr>
+            <td class="">[U:1:124208311]</td>
+            <td class="">Ch0W0n</td>
+            <td class="">72</td>
+            <td class="">131</td>
+            <td class="">24</td>
+            <td class="">197.36</td>
+            <td class="">230.25</td>
+            <td class="">-32.89</td>
+            <td class="">0.55</td>
+            <td class="">0.73</td>
+            <td class="">12.91</td>
+            <td class="">23.50</td>
+            <td class="">33012</td>
+            <td class="">10036</td>
+            <td class=""><a href="https://logs.tf/3286805">3286805</a>, <a href="https://logs.tf/3286815">3286815</a>, <a href="https://logs.tf/3286828">3286828</a>, <a href="https://logs.tf/3286840">3286840</a>, <a href="https://logs.tf/3286865">3286865</a>, <a href="https://logs.tf/3287470">3287470</a>, <a href="https://logs.tf/3287457">3287457</a>, </td>
+          </tr>
+          <tr>
+            <td class="">[U:1:218107249]</td>
+            <td class="">TW ukk</td>
+            <td class="">20</td>
+            <td class="">56</td>
+            <td class="">8</td>
+            <td class="">207.88</td>
+            <td class="">292.81</td>
+            <td class="">-84.93</td>
+            <td class="">0.36</td>
+            <td class="">0.50</td>
+            <td class="">11.26</td>
+            <td class="">31.52</td>
+            <td class="">11080</td>
+            <td class="">3198</td>
+            <td class=""><a href="https://logs.tf/3286808">3286808</a>, <a href="https://logs.tf/3286815">3286815</a>, <a href="https://logs.tf/3286839">3286839</a>, </td>
+          </tr>
+          <tr>
+            <td class="">[U:1:312605197]</td>
+            <td class="">TH heria</td>
+            <td class="">161</td>
+            <td class="">140</td>
+            <td class="">60</td>
+            <td class="">296.67</td>
+            <td class="">311.94</td>
+            <td class="">-15.27</td>
+            <td class="">1.15</td>
+            <td class="">1.58</td>
+            <td class="">22.62</td>
+            <td class="">19.67</td>
+            <td class="">63334</td>
+            <td class="">12809</td>
+            <td class=""><a href="https://logs.tf/3286808">3286808</a>, <a href="https://logs.tf/3286842">3286842</a>, <a href="https://logs.tf/3286864">3286864</a>, <a href="https://logs.tf/3287457">3287457</a>, <a href="https://logs.tf/3287482">3287482</a>, <a href="https://logs.tf/3287492">3287492</a>, <a href="https://logs.tf/3287498">3287498</a>, <a href="https://logs.tf/3287519">3287519</a>, <a href="https://logs.tf/3287549">3287549</a>, <a href="https://logs.tf/3287557">3287557</a>, <a href="https://logs.tf/3287567">3287567</a>, </td>
+          </tr>
+          <tr>
+            <td class="">[U:1:308396328]</td>
+            <td class="">TH DowWy</td>
+            <td class="">198</td>
+            <td class="">248</td>
+            <td class="">86</td>
+            <td class="">251.12</td>
+            <td class="">249.44</td>
+            <td class="">1.68</td>
+            <td class="">0.80</td>
+            <td class="">1.15</td>
+            <td class="">17.49</td>
+            <td class="">21.91</td>
+            <td class="">85268</td>
+            <td class="">20373</td>
+            <td class=""><a href="https://logs.tf/3286808">3286808</a>, <a href="https://logs.tf/3286820">3286820</a>, <a href="https://logs.tf/3286828">3286828</a>, <a href="https://logs.tf/3286842">3286842</a>, <a href="https://logs.tf/3286864">3286864</a>, <a href="https://logs.tf/3287457">3287457</a>, <a href="https://logs.tf/3287482">3287482</a>, <a href="https://logs.tf/3287492">3287492</a>, <a href="https://logs.tf/3287498">3287498</a>, <a href="https://logs.tf/3287519">3287519</a>, <a href="https://logs.tf/3287549">3287549</a>, <a href="https://logs.tf/3287557">3287557</a>, <a href="https://logs.tf/3287567">3287567</a>, </td>
+          </tr>
+          <tr>
+            <td class="">[U:1:231493957]</td>
+            <td class="">Aylek$</td>
+            <td class="">22</td>
+            <td class="">41</td>
+            <td class="">13</td>
+            <td class="">189.59</td>
+            <td class="">230.45</td>
+            <td class="">-40.87</td>
+            <td class="">0.54</td>
+            <td class="">0.85</td>
+            <td class="">12.24</td>
+            <td class="">22.81</td>
+            <td class="">10225</td>
+            <td class="">3236</td>
+            <td class=""><a href="https://logs.tf/3286808">3286808</a>, <a href="https://logs.tf/3286815">3286815</a>, <a href="https://logs.tf/3286839">3286839</a>, </td>
+          </tr>
+          <tr>
+            <td class="">[U:1:80080450]</td>
+            <td class="">MY teejay</td>
+            <td class="">82</td>
+            <td class="">76</td>
+            <td class="">37</td>
+            <td class="">332.56</td>
+            <td class="">302.85</td>
+            <td class="">29.72</td>
+            <td class="">1.08</td>
+            <td class="">1.57</td>
+            <td class="">22.81</td>
+            <td class="">21.14</td>
+            <td class="">35867</td>
+            <td class="">6471</td>
+            <td class=""><a href="https://logs.tf/3286809">3286809</a>, <a href="https://logs.tf/3286814">3286814</a>, <a href="https://logs.tf/3286827">3286827</a>, <a href="https://logs.tf/3286840">3286840</a>, <a href="https://logs.tf/3287447">3287447</a>, </td>
+          </tr>
+          <tr>
+            <td class="">[U:1:181496391]</td>
+            <td class="">Raiz</td>
+            <td class="">24</td>
+            <td class="">47</td>
+            <td class="">6</td>
+            <td class="">220.70</td>
+            <td class="">256.16</td>
+            <td class="">-35.46</td>
+            <td class="">0.51</td>
+            <td class="">0.64</td>
+            <td class="">13.05</td>
+            <td class="">25.55</td>
+            <td class="">12179</td>
+            <td class="">3311</td>
+            <td class=""><a href="https://logs.tf/3286809">3286809</a>, <a href="https://logs.tf/3286826">3286826</a>, </td>
+          </tr>
+          <tr>
+            <td class="">[U:1:331394858]</td>
+            <td class="">MY hezzy</td>
+            <td class="">103</td>
+            <td class="">164</td>
+            <td class="">50</td>
+            <td class="">255.17</td>
+            <td class="">261.38</td>
+            <td class="">-6.21</td>
+            <td class="">0.63</td>
+            <td class="">0.93</td>
+            <td class="">17.13</td>
+            <td class="">27.28</td>
+            <td class="">46020</td>
+            <td class="">10821</td>
+            <td class=""><a href="https://logs.tf/3286809">3286809</a>, <a href="https://logs.tf/3286814">3286814</a>, <a href="https://logs.tf/3286827">3286827</a>, <a href="https://logs.tf/3286840">3286840</a>, <a href="https://logs.tf/3286864">3286864</a>, <a href="https://logs.tf/3287470">3287470</a>, <a href="https://logs.tf/3287492">3287492</a>, <a href="https://logs.tf/3287498">3287498</a>, </td>
+          </tr>
+          <tr>
+            <td class="">[U:1:150335547]</td>
+            <td class="">VN Sync</td>
+            <td class="">22</td>
+            <td class="">34</td>
+            <td class="">12</td>
+            <td class="">244.71</td>
+            <td class="">265.23</td>
+            <td class="">-20.51</td>
+            <td class="">0.65</td>
+            <td class="">1.00</td>
+            <td class="">11.96</td>
+            <td class="">18.48</td>
+            <td class="">13504</td>
+            <td class="">3311</td>
+            <td class=""><a href="https://logs.tf/3286809">3286809</a>, <a href="https://logs.tf/3286826">3286826</a>, </td>
+          </tr>
+          <tr>
+            <td class="">[U:1:96055286]</td>
+            <td class="">HK Starling</td>
+            <td class="">49</td>
+            <td class="">103</td>
+            <td class="">22</td>
+            <td class="">227.29</td>
+            <td class="">244.42</td>
+            <td class="">-17.13</td>
+            <td class="">0.48</td>
+            <td class="">0.69</td>
+            <td class="">12.23</td>
+            <td class="">25.70</td>
+            <td class="">27328</td>
+            <td class="">7214</td>
+            <td class=""><a href="https://logs.tf/3286814">3286814</a>, <a href="https://logs.tf/3286826">3286826</a>, <a href="https://logs.tf/3286842">3286842</a>, <a href="https://logs.tf/3286865">3286865</a>, </td>
+          </tr>
+          <tr>
+            <td class="">[U:1:135012986]</td>
+            <td class="">HK banana</td>
+            <td class="">63</td>
+            <td class="">110</td>
+            <td class="">23</td>
+            <td class="">227.49</td>
+            <td class="">271.59</td>
+            <td class="">-44.10</td>
+            <td class="">0.57</td>
+            <td class="">0.78</td>
+            <td class="">15.72</td>
+            <td class="">27.45</td>
+            <td class="">27344</td>
+            <td class="">7212</td>
+            <td class=""><a href="https://logs.tf/3286814">3286814</a>, <a href="https://logs.tf/3286826">3286826</a>, <a href="https://logs.tf/3286842">3286842</a>, <a href="https://logs.tf/3286865">3286865</a>, </td>
+          </tr>
+          <tr>
+            <td class="">[U:1:123610484]</td>
+            <td class="">TH Corde</td>
+            <td class="">24</td>
+            <td class="">40</td>
+            <td class="">8</td>
+            <td class="">195.75</td>
+            <td class="">228.60</td>
+            <td class="">-32.85</td>
+            <td class="">0.60</td>
+            <td class="">0.80</td>
+            <td class="">16.95</td>
+            <td class="">28.26</td>
+            <td class="">8313</td>
+            <td class="">2548</td>
+            <td class=""><a href="https://logs.tf/3286820">3286820</a>, <a href="https://logs.tf/3286828">3286828</a>, </td>
+          </tr>
+          <tr>
+            <td class="">[U:1:170998559]</td>
+            <td class="">MY altaria</td>
+            <td class="">60</td>
+            <td class="">98</td>
+            <td class="">20</td>
+            <td class="">236.37</td>
+            <td class="">275.18</td>
+            <td class="">-38.80</td>
+            <td class="">0.61</td>
+            <td class="">0.82</td>
+            <td class="">15.63</td>
+            <td class="">25.53</td>
+            <td class="">27222</td>
+            <td class="">6910</td>
+            <td class=""><a href="https://logs.tf/3286840">3286840</a>, <a href="https://logs.tf/3286864">3286864</a>, <a href="https://logs.tf/3287447">3287447</a>, <a href="https://logs.tf/3287470">3287470</a>, <a href="https://logs.tf/3287492">3287492</a>, <a href="https://logs.tf/3287498">3287498</a>, </td>
+          </tr>
+          <tr>
+            <td class="">[U:1:114873466]</td>
+            <td class="">SG Smily</td>
+            <td class="">89</td>
+            <td class="">158</td>
+            <td class="">32</td>
+            <td class="">230.80</td>
+            <td class="">228.77</td>
+            <td class="">2.03</td>
+            <td class="">0.56</td>
+            <td class="">0.77</td>
+            <td class="">14.69</td>
+            <td class="">26.08</td>
+            <td class="">41941</td>
+            <td class="">10903</td>
+            <td class=""><a href="https://logs.tf/3286839">3286839</a>, <a href="https://logs.tf/3287447">3287447</a>, <a href="https://logs.tf/3287482">3287482</a>, <a href="https://logs.tf/3287519">3287519</a>, <a href="https://logs.tf/3287549">3287549</a>, <a href="https://logs.tf/3287557">3287557</a>, <a href="https://logs.tf/3287567">3287567</a>, </td>
+          </tr>
+          <tr>
+            <td class="">[U:1:33227167]</td>
+            <td class="">TH Birdfly</td>
+            <td class="">28</td>
+            <td class="">29</td>
+            <td class="">11</td>
+            <td class="">296.58</td>
+            <td class="">627.24</td>
+            <td class="">-330.66</td>
+            <td class="">0.97</td>
+            <td class="">1.34</td>
+            <td class="">25.62</td>
+            <td class="">26.54</td>
+            <td class="">9723</td>
+            <td class="">1967</td>
+            <td class=""><a href="https://logs.tf/3287492">3287492</a>, <a href="https://logs.tf/3287498">3287498</a>, <a href="https://logs.tf/3287557">3287557</a>, </td>
+          </tr>
+      </tbody>
+      </table>
+    </div>
+
+    <div id="pyro" class="table-hidden">
+      <h3>Pyro</h3>
+      <table id="pyroStats" class="js-sort-table">
+      <thead>
+        <tr>
+          <th class="js-sort-number">Steam ID</td>
+          <th class="js-sort-number">Aliases</td>
+          <th class="js-sort-number">Kills</td>
+          <th class="js-sort-number">Deaths</td>
+          <th class="js-sort-number">Assists</td>
+          <th class="js-sort-number">DPM</td>
+          <th class="js-sort-number">DTM</td>
+          <th class="js-sort-number">DPM - DTM</td>
+          <th class="js-sort-number">K/D</td>
+          <th class="js-sort-number">KA/D</td>
+          <th class="js-sort-number">K/30m</th>
+          <th class="js-sort-number">D/30m</th>
+          <th class="js-sort-number">Total Damage</td>
+          <th class="js-sort-number">Total Time (s)</td>
+          <th class="js-sort-number">Logs</td>
+        </tr>
+      </thead>
+      <tbody>
+          <tr>
+            <td class="">[U:1:218107249]</td>
+            <td class="">TW ukk</td>
+            <td class="">0</td>
+            <td class="">2</td>
+            <td class="">1</td>
+            <td class="">110.77</td>
+            <td class="">28144.62</td>
+            <td class="">-28033.85</td>
+            <td class="">0.00</td>
+            <td class="">0.50</td>
+            <td class="">0.00</td>
+            <td class="">138.46</td>
+            <td class="">48</td>
+            <td class="">26</td>
+            <td class=""><a href="https://logs.tf/3286808">3286808</a>, <a href="https://logs.tf/3286815">3286815</a>, </td>
+          </tr>
+          <tr>
+            <td class="">[U:1:331394858]</td>
+            <td class="">MY hezzy</td>
+            <td class="">0</td>
+            <td class="">1</td>
+            <td class="">0</td>
+            <td class="">185.29</td>
+            <td class="">14355.88</td>
+            <td class="">-14170.59</td>
+            <td class="">0.00</td>
+            <td class="">0.00</td>
+            <td class="">0.00</td>
+            <td class="">52.94</td>
+            <td class="">105</td>
+            <td class="">34</td>
+            <td class=""><a href="https://logs.tf/3286814">3286814</a>, </td>
+          </tr>
+          <tr>
+            <td class="">[U:1:312605197]</td>
+            <td class="">TH heria</td>
+            <td class="">1</td>
+            <td class="">2</td>
+            <td class="">0</td>
+            <td class="">45.44</td>
+            <td class="">10544.85</td>
+            <td class="">-10499.42</td>
+            <td class="">0.50</td>
+            <td class="">0.50</td>
+            <td class="">17.48</td>
+            <td class="">34.95</td>
+            <td class="">78</td>
+            <td class="">103</td>
+            <td class=""><a href="https://logs.tf/3286820">3286820</a>, <a href="https://logs.tf/3287557">3287557</a>, <a href="https://logs.tf/3287567">3287567</a>, </td>
+          </tr>
+          <tr>
+            <td class="">[U:1:33227167]</td>
+            <td class="">TH Birdfly</td>
+            <td class="">1</td>
+            <td class="">3</td>
+            <td class="">1</td>
+            <td class="">478.85</td>
+            <td class="">22751.54</td>
+            <td class="">-22272.69</td>
+            <td class="">0.33</td>
+            <td class="">0.67</td>
+            <td class="">34.62</td>
+            <td class="">103.85</td>
+            <td class="">415</td>
+            <td class="">52</td>
+            <td class=""><a href="https://logs.tf/3286864">3286864</a>, <a href="https://logs.tf/3287482">3287482</a>, <a href="https://logs.tf/3287567">3287567</a>, </td>
+          </tr>
+          <tr>
+            <td class="">[U:1:183670774]</td>
+            <td class="">KR Stryker</td>
+            <td class="">1</td>
+            <td class="">1</td>
+            <td class="">0</td>
+            <td class="">286.91</td>
+            <td class="">11205.82</td>
+            <td class="">-10918.91</td>
+            <td class="">1.00</td>
+            <td class="">1.00</td>
+            <td class="">32.73</td>
+            <td class="">32.73</td>
+            <td class="">263</td>
+            <td class="">55</td>
+            <td class=""><a href="https://logs.tf/3286865">3286865</a>, <a href="https://logs.tf/3287470">3287470</a>, </td>
+          </tr>
+          <tr>
+            <td class="">[U:1:105996834]</td>
+            <td class="">TH Luv</td>
+            <td class="">3</td>
+            <td class="">3</td>
+            <td class="">2</td>
+            <td class="">300.65</td>
+            <td class="">7269.73</td>
+            <td class="">-6969.08</td>
+            <td class="">1.00</td>
+            <td class="">1.67</td>
+            <td class="">29.19</td>
+            <td class="">29.19</td>
+            <td class="">927</td>
+            <td class="">185</td>
+            <td class=""><a href="https://logs.tf/3287519">3287519</a>, <a href="https://logs.tf/3287549">3287549</a>, <a href="https://logs.tf/3287567">3287567</a>, </td>
+          </tr>
+      </tbody>
+      </table>
+    </div>
+
+    <div id="demoman" class="table-hidden">
+      <h3>Demoman</h3>
+      <table id="demomanStats" class="js-sort-table">
+      <thead>
+        <tr>
+          <th class="js-sort-number">Steam ID</td>
+          <th class="js-sort-number">Aliases</td>
+          <th class="js-sort-number">Kills</td>
+          <th class="js-sort-number">Deaths</td>
+          <th class="js-sort-number">Assists</td>
+          <th class="js-sort-number">DPM</td>
+          <th class="js-sort-number">DTM</td>
+          <th class="js-sort-number">DPM - DTM</td>
+          <th class="js-sort-number">K/D</td>
+          <th class="js-sort-number">KA/D</td>
+          <th class="js-sort-number">K/30m</th>
+          <th class="js-sort-number">D/30m</th>
+          <th class="js-sort-number">Total Damage</td>
+          <th class="js-sort-number">Total Time (s)</td>
+          <th class="js-sort-number">Logs</td>
+        </tr>
+      </thead>
+      <tbody>
+          <tr>
+            <td class="">[U:1:90306326]</td>
+            <td class="">SG Ry4n</td>
+            <td class="">174</td>
+            <td class="">112</td>
+            <td class="">70</td>
+            <td class="">323.53</td>
+            <td class="">265.87</td>
+            <td class="">57.65</td>
+            <td class="">1.55</td>
+            <td class="">2.18</td>
+            <td class="">20.79</td>
+            <td class="">13.38</td>
+            <td class="">81248</td>
+            <td class="">15068</td>
+            <td class=""><a href="https://logs.tf/3286805">3286805</a>, <a href="https://logs.tf/3286820">3286820</a>, <a href="https://logs.tf/3286827">3286827</a>, <a href="https://logs.tf/3286839">3286839</a>, <a href="https://logs.tf/3287447">3287447</a>, <a href="https://logs.tf/3287482">3287482</a>, <a href="https://logs.tf/3287519">3287519</a>, <a href="https://logs.tf/3287549">3287549</a>, <a href="https://logs.tf/3287557">3287557</a>, <a href="https://logs.tf/3287567">3287567</a>, </td>
+          </tr>
+          <tr>
+            <td class="">[U:1:1010126009]</td>
+            <td class="">KR h3kf</td>
+            <td class="">89</td>
+            <td class="">85</td>
+            <td class="">33</td>
+            <td class="">274.96</td>
+            <td class="">248.64</td>
+            <td class="">26.32</td>
+            <td class="">1.05</td>
+            <td class="">1.44</td>
+            <td class="">15.97</td>
+            <td class="">15.25</td>
+            <td class="">45964</td>
+            <td class="">10030</td>
+            <td class=""><a href="https://logs.tf/3286805">3286805</a>, <a href="https://logs.tf/3286815">3286815</a>, <a href="https://logs.tf/3286828">3286828</a>, <a href="https://logs.tf/3286840">3286840</a>, <a href="https://logs.tf/3286865">3286865</a>, <a href="https://logs.tf/3287470">3287470</a>, <a href="https://logs.tf/3287457">3287457</a>, </td>
+          </tr>
+          <tr>
+            <td class="">[U:1:1226259413]</td>
+            <td class="">TW kosina</td>
+            <td class="">44</td>
+            <td class="">41</td>
+            <td class="">7</td>
+            <td class="">341.44</td>
+            <td class="">288.02</td>
+            <td class="">53.42</td>
+            <td class="">1.07</td>
+            <td class="">1.24</td>
+            <td class="">24.47</td>
+            <td class="">22.81</td>
+            <td class="">18415</td>
+            <td class="">3236</td>
+            <td class=""><a href="https://logs.tf/3286808">3286808</a>, <a href="https://logs.tf/3286815">3286815</a>, <a href="https://logs.tf/3286839">3286839</a>, </td>
+          </tr>
+          <tr>
+            <td class="">[U:1:372506454]</td>
+            <td class="">TH Crusky</td>
+            <td class="">199</td>
+            <td class="">171</td>
+            <td class="">73</td>
+            <td class="">281.29</td>
+            <td class="">251.12</td>
+            <td class="">30.17</td>
+            <td class="">1.16</td>
+            <td class="">1.59</td>
+            <td class="">17.57</td>
+            <td class="">15.10</td>
+            <td class="">95579</td>
+            <td class="">20387</td>
+            <td class=""><a href="https://logs.tf/3286808">3286808</a>, <a href="https://logs.tf/3286820">3286820</a>, <a href="https://logs.tf/3286828">3286828</a>, <a href="https://logs.tf/3286842">3286842</a>, <a href="https://logs.tf/3286864">3286864</a>, <a href="https://logs.tf/3287457">3287457</a>, <a href="https://logs.tf/3287482">3287482</a>, <a href="https://logs.tf/3287492">3287492</a>, <a href="https://logs.tf/3287498">3287498</a>, <a href="https://logs.tf/3287519">3287519</a>, <a href="https://logs.tf/3287549">3287549</a>, <a href="https://logs.tf/3287557">3287557</a>, <a href="https://logs.tf/3287567">3287567</a>, </td>
+          </tr>
+          <tr>
+            <td class="">[U:1:111899967]</td>
+            <td class="">VN Gh0sty</td>
+            <td class="">33</td>
+            <td class="">32</td>
+            <td class="">13</td>
+            <td class="">355.98</td>
+            <td class="">375.49</td>
+            <td class="">-19.52</td>
+            <td class="">1.03</td>
+            <td class="">1.44</td>
+            <td class="">17.94</td>
+            <td class="">17.40</td>
+            <td class="">19644</td>
+            <td class="">3311</td>
+            <td class=""><a href="https://logs.tf/3286809">3286809</a>, <a href="https://logs.tf/3286826">3286826</a>, </td>
+          </tr>
+          <tr>
+            <td class="">[U:1:170998559]</td>
+            <td class="">MY altaria</td>
+            <td class="">30</td>
+            <td class="">51</td>
+            <td class="">18</td>
+            <td class="">264.99</td>
+            <td class="">292.00</td>
+            <td class="">-27.01</td>
+            <td class="">0.59</td>
+            <td class="">0.94</td>
+            <td class="">10.36</td>
+            <td class="">17.62</td>
+            <td class="">23014</td>
+            <td class="">5211</td>
+            <td class=""><a href="https://logs.tf/3286809">3286809</a>, <a href="https://logs.tf/3286814">3286814</a>, <a href="https://logs.tf/3286827">3286827</a>, <a href="https://logs.tf/3286840">3286840</a>, </td>
+          </tr>
+          <tr>
+            <td class="">[U:1:106487076]</td>
+            <td class="">HK konma</td>
+            <td class="">65</td>
+            <td class="">53</td>
+            <td class="">35</td>
+            <td class="">314.10</td>
+            <td class="">262.69</td>
+            <td class="">51.41</td>
+            <td class="">1.23</td>
+            <td class="">1.89</td>
+            <td class="">16.22</td>
+            <td class="">13.22</td>
+            <td class="">37765</td>
+            <td class="">7214</td>
+            <td class=""><a href="https://logs.tf/3286814">3286814</a>, <a href="https://logs.tf/3286826">3286826</a>, <a href="https://logs.tf/3286842">3286842</a>, <a href="https://logs.tf/3286865">3286865</a>, </td>
+          </tr>
+          <tr>
+            <td class="">[U:1:80080450]</td>
+            <td class="">MY teejay</td>
+            <td class="">0</td>
+            <td class="">2</td>
+            <td class="">1</td>
+            <td class="">464.29</td>
+            <td class="">3920.00</td>
+            <td class="">-3455.71</td>
+            <td class="">0.00</td>
+            <td class="">0.50</td>
+            <td class="">0.00</td>
+            <td class="">42.86</td>
+            <td class="">650</td>
+            <td class="">84</td>
+            <td class=""><a href="https://logs.tf/3286840">3286840</a>, </td>
+          </tr>
+          <tr>
+            <td class="">[U:1:136192075]</td>
+            <td class="">MY Veron</td>
+            <td class="">52</td>
+            <td class="">58</td>
+            <td class="">23</td>
+            <td class="">250.08</td>
+            <td class="">229.40</td>
+            <td class="">20.68</td>
+            <td class="">0.90</td>
+            <td class="">1.29</td>
+            <td class="">13.67</td>
+            <td class="">15.25</td>
+            <td class="">28538</td>
+            <td class="">6847</td>
+            <td class=""><a href="https://logs.tf/3286864">3286864</a>, <a href="https://logs.tf/3287447">3287447</a>, <a href="https://logs.tf/3287470">3287470</a>, <a href="https://logs.tf/3287492">3287492</a>, <a href="https://logs.tf/3287498">3287498</a>, </td>
+          </tr>
+      </tbody>
+      </table>
+    </div>
+
+    <div id="heavyweapons" class="table-hidden">
+      <h3>Heavy</h3>
+      <table id="heavyweaponsStats" class="js-sort-table">
+      <thead>
+        <tr>
+          <th class="js-sort-number">Steam ID</td>
+          <th class="js-sort-number">Aliases</td>
+          <th class="js-sort-number">Kills</td>
+          <th class="js-sort-number">Deaths</td>
+          <th class="js-sort-number">Assists</td>
+          <th class="js-sort-number">DPM</td>
+          <th class="js-sort-number">DTM</td>
+          <th class="js-sort-number">DPM - DTM</td>
+          <th class="js-sort-number">K/D</td>
+          <th class="js-sort-number">KA/D</td>
+          <th class="js-sort-number">K/30m</th>
+          <th class="js-sort-number">D/30m</th>
+          <th class="js-sort-number">Total Damage</td>
+          <th class="js-sort-number">Total Time (s)</td>
+          <th class="js-sort-number">Logs</td>
+        </tr>
+      </thead>
+      <tbody>
+          <tr>
+            <td class="">[U:1:1126684222]</td>
+            <td class="">KR Vinea</td>
+            <td class="">3</td>
+            <td class="">0</td>
+            <td class="">2</td>
+            <td class="">739.64</td>
+            <td class="">8158.91</td>
+            <td class="">-7419.27</td>
+            <td class="">Infinity</td>
+            <td class="">Infinity</td>
+            <td class="">98.18</td>
+            <td class="">0.00</td>
+            <td class="">678</td>
+            <td class="">55</td>
+            <td class=""><a href="https://logs.tf/3286805">3286805</a>, <a href="https://logs.tf/3287457">3287457</a>, </td>
+          </tr>
+          <tr>
+            <td class="">[U:1:48645190]</td>
+            <td class="">TW butterfly</td>
+            <td class="">1</td>
+            <td class="">1</td>
+            <td class="">1</td>
+            <td class="">292.17</td>
+            <td class="">5164.35</td>
+            <td class="">-4872.17</td>
+            <td class="">1.00</td>
+            <td class="">2.00</td>
+            <td class="">26.09</td>
+            <td class="">26.09</td>
+            <td class="">336</td>
+            <td class="">69</td>
+            <td class=""><a href="https://logs.tf/3286808">3286808</a>, <a href="https://logs.tf/3286839">3286839</a>, </td>
+          </tr>
+          <tr>
+            <td class="">[U:1:139041873]</td>
+            <td class="">VN teehee</td>
+            <td class="">0</td>
+            <td class="">0</td>
+            <td class="">1</td>
+            <td class="">604.44</td>
+            <td class="">7284.44</td>
+            <td class="">-6680.00</td>
+            <td class="">NaN</td>
+            <td class="">Infinity</td>
+            <td class="">0.00</td>
+            <td class="">0.00</td>
+            <td class="">272</td>
+            <td class="">27</td>
+            <td class=""><a href="https://logs.tf/3286809">3286809</a>, </td>
+          </tr>
+          <tr>
+            <td class="">[U:1:396627941]</td>
+            <td class="">MY jub</td>
+            <td class="">0</td>
+            <td class="">1</td>
+            <td class="">0</td>
+            <td class="">143.33</td>
+            <td class="">9166.67</td>
+            <td class="">-9023.34</td>
+            <td class="">0.00</td>
+            <td class="">0.00</td>
+            <td class="">0.00</td>
+            <td class="">50.00</td>
+            <td class="">86</td>
+            <td class="">36</td>
+            <td class=""><a href="https://logs.tf/3286814">3286814</a>, </td>
+          </tr>
+          <tr>
+            <td class="">[U:1:33227167]</td>
+            <td class="">TH Birdfly</td>
+            <td class="">1</td>
+            <td class="">2</td>
+            <td class="">2</td>
+            <td class="">272.88</td>
+            <td class="">9762.69</td>
+            <td class="">-9489.81</td>
+            <td class="">0.50</td>
+            <td class="">1.50</td>
+            <td class="">17.31</td>
+            <td class="">34.62</td>
+            <td class="">473</td>
+            <td class="">104</td>
+            <td class=""><a href="https://logs.tf/3286820">3286820</a>, <a href="https://logs.tf/3286842">3286842</a>, <a href="https://logs.tf/3287519">3287519</a>, </td>
+          </tr>
+          <tr>
+            <td class="">[U:1:105996834]</td>
+            <td class="">TH Luv</td>
+            <td class="">1</td>
+            <td class="">4</td>
+            <td class="">2</td>
+            <td class="">254.63</td>
+            <td class="">10247.63</td>
+            <td class="">-9993.00</td>
+            <td class="">0.25</td>
+            <td class="">0.75</td>
+            <td class="">11.25</td>
+            <td class="">45.00</td>
+            <td class="">679</td>
+            <td class="">160</td>
+            <td class=""><a href="https://logs.tf/3286864">3286864</a>, <a href="https://logs.tf/3287457">3287457</a>, <a href="https://logs.tf/3287519">3287519</a>, <a href="https://logs.tf/3287567">3287567</a>, </td>
+          </tr>
+          <tr>
+            <td class="">[U:1:1321242748]</td>
+            <td class="">MY Doklalodka</td>
+            <td class="">1</td>
+            <td class="">4</td>
+            <td class="">1</td>
+            <td class="">353.92</td>
+            <td class="">3069.87</td>
+            <td class="">-2715.95</td>
+            <td class="">0.25</td>
+            <td class="">0.50</td>
+            <td class="">22.78</td>
+            <td class="">91.14</td>
+            <td class="">466</td>
+            <td class="">79</td>
+            <td class=""><a href="https://logs.tf/3287447">3287447</a>, </td>
+          </tr>
+          <tr>
+            <td class="">[U:1:183670774]</td>
+            <td class="">KR Stryker</td>
+            <td class="">0</td>
+            <td class="">2</td>
+            <td class="">0</td>
+            <td class="">219.17</td>
+            <td class="">8635.00</td>
+            <td class="">-8415.83</td>
+            <td class="">0.00</td>
+            <td class="">0.00</td>
+            <td class="">0.00</td>
+            <td class="">50.00</td>
+            <td class="">263</td>
+            <td class="">72</td>
+            <td class=""><a href="https://logs.tf/3287470">3287470</a>, <a href="https://logs.tf/3287457">3287457</a>, </td>
+          </tr>
+          <tr>
+            <td class="">[U:1:205675480]</td>
+            <td class="">SG jpd</td>
+            <td class="">4</td>
+            <td class="">2</td>
+            <td class="">4</td>
+            <td class="">703.08</td>
+            <td class="">16487.69</td>
+            <td class="">-15784.62</td>
+            <td class="">2.00</td>
+            <td class="">4.00</td>
+            <td class="">92.31</td>
+            <td class="">46.15</td>
+            <td class="">914</td>
+            <td class="">78</td>
+            <td class=""><a href="https://logs.tf/3287482">3287482</a>, <a href="https://logs.tf/3287519">3287519</a>, <a href="https://logs.tf/3287549">3287549</a>, <a href="https://logs.tf/3287567">3287567</a>, </td>
+          </tr>
+          <tr>
+            <td class="">[U:1:312605197]</td>
+            <td class="">TH heria</td>
+            <td class="">1</td>
+            <td class="">0</td>
+            <td class="">2</td>
+            <td class="">946.50</td>
+            <td class="">10921.50</td>
+            <td class="">-9975.00</td>
+            <td class="">Infinity</td>
+            <td class="">Infinity</td>
+            <td class="">45.00</td>
+            <td class="">0.00</td>
+            <td class="">631</td>
+            <td class="">40</td>
+            <td class=""><a href="https://logs.tf/3287498">3287498</a>, </td>
+          </tr>
+          <tr>
+            <td class="">[U:1:143476343]</td>
+            <td class="">MY apples</td>
+            <td class="">2</td>
+            <td class="">0</td>
+            <td class="">0</td>
+            <td class="">803.33</td>
+            <td class="">21733.33</td>
+            <td class="">-20930.00</td>
+            <td class="">Infinity</td>
+            <td class="">Infinity</td>
+            <td class="">200.00</td>
+            <td class="">0.00</td>
+            <td class="">241</td>
+            <td class="">18</td>
+            <td class=""><a href="https://logs.tf/3287498">3287498</a>, </td>
+          </tr>
+          <tr>
+            <td class="">[U:1:1059335465]</td>
+            <td class="">SG ruee</td>
+            <td class="">3</td>
+            <td class="">0</td>
+            <td class="">0</td>
+            <td class="">981.29</td>
+            <td class="">11624.52</td>
+            <td class="">-10643.23</td>
+            <td class="">Infinity</td>
+            <td class="">Infinity</td>
+            <td class="">174.19</td>
+            <td class="">0.00</td>
+            <td class="">507</td>
+            <td class="">31</td>
+            <td class=""><a href="https://logs.tf/3287567">3287567</a>, </td>
+          </tr>
+          <tr>
+            <td class="">[U:1:308396328]</td>
+            <td class="">TH DowWy</td>
+            <td class="">2</td>
+            <td class="">1</td>
+            <td class="">0</td>
+            <td class="">260.00</td>
+            <td class="">36835.00</td>
+            <td class="">-36575.00</td>
+            <td class="">2.00</td>
+            <td class="">2.00</td>
+            <td class="">300.00</td>
+            <td class="">150.00</td>
+            <td class="">52</td>
+            <td class="">12</td>
+            <td class=""><a href="https://logs.tf/3287567">3287567</a>, </td>
+          </tr>
+      </tbody>
+      </table>
+    </div>
+
+    <div id="engineer" class="table-hidden">
+      <h3>Engineer</h3>
+      <table id="engineerStats" class="js-sort-table">
+      <thead>
+        <tr>
+          <th class="js-sort-number">Steam ID</td>
+          <th class="js-sort-number">Aliases</td>
+          <th class="js-sort-number">Kills</td>
+          <th class="js-sort-number">Deaths</td>
+          <th class="js-sort-number">Assists</td>
+          <th class="js-sort-number">DPM</td>
+          <th class="js-sort-number">DTM</td>
+          <th class="js-sort-number">DPM - DTM</td>
+          <th class="js-sort-number">K/D</td>
+          <th class="js-sort-number">KA/D</td>
+          <th class="js-sort-number">K/30m</th>
+          <th class="js-sort-number">D/30m</th>
+          <th class="js-sort-number">Total Damage</td>
+          <th class="js-sort-number">Total Time (s)</td>
+          <th class="js-sort-number">Logs</td>
+        </tr>
+      </thead>
+      <tbody>
+          <tr>
+            <td class="">[U:1:205675480]</td>
+            <td class="">SG jpd</td>
+            <td class="">3</td>
+            <td class="">0</td>
+            <td class="">3</td>
+            <td class="">335.92</td>
+            <td class="">3759.94</td>
+            <td class="">-3424.01</td>
+            <td class="">Infinity</td>
+            <td class="">Infinity</td>
+            <td class="">17.20</td>
+            <td class="">0.00</td>
+            <td class="">1758</td>
+            <td class="">314</td>
+            <td class=""><a href="https://logs.tf/3286805">3286805</a>, <a href="https://logs.tf/3287482">3287482</a>, <a href="https://logs.tf/3287549">3287549</a>, <a href="https://logs.tf/3287567">3287567</a>, </td>
+          </tr>
+          <tr>
+            <td class="">[U:1:1126684222]</td>
+            <td class="">KR Vinea</td>
+            <td class="">0</td>
+            <td class="">0</td>
+            <td class="">0</td>
+            <td class="">70.55</td>
+            <td class="">2069.01</td>
+            <td class="">-1998.46</td>
+            <td class="">NaN</td>
+            <td class="">NaN</td>
+            <td class="">0.00</td>
+            <td class="">0.00</td>
+            <td class="">107</td>
+            <td class="">91</td>
+            <td class=""><a href="https://logs.tf/3286805">3286805</a>, </td>
+          </tr>
+          <tr>
+            <td class="">[U:1:48645190]</td>
+            <td class="">TW butterfly</td>
+            <td class="">1</td>
+            <td class="">2</td>
+            <td class="">0</td>
+            <td class="">137.48</td>
+            <td class="">2292.97</td>
+            <td class="">-2155.50</td>
+            <td class="">0.50</td>
+            <td class="">0.50</td>
+            <td class="">5.41</td>
+            <td class="">10.81</td>
+            <td class="">763</td>
+            <td class="">333</td>
+            <td class=""><a href="https://logs.tf/3286808">3286808</a>, <a href="https://logs.tf/3286815">3286815</a>, <a href="https://logs.tf/3286839">3286839</a>, </td>
+          </tr>
+          <tr>
+            <td class="">[U:1:312605197]</td>
+            <td class="">TH heria</td>
+            <td class="">0</td>
+            <td class="">0</td>
+            <td class="">0</td>
+            <td class="">69.64</td>
+            <td class="">6088.47</td>
+            <td class="">-6018.83</td>
+            <td class="">NaN</td>
+            <td class="">NaN</td>
+            <td class="">0.00</td>
+            <td class="">0.00</td>
+            <td class="">159</td>
+            <td class="">137</td>
+            <td class=""><a href="https://logs.tf/3286820">3286820</a>, <a href="https://logs.tf/3287498">3287498</a>, </td>
+          </tr>
+          <tr>
+            <td class="">[U:1:33227167]</td>
+            <td class="">TH Birdfly</td>
+            <td class="">6</td>
+            <td class="">3</td>
+            <td class="">6</td>
+            <td class="">122.57</td>
+            <td class="">1606.60</td>
+            <td class="">-1484.03</td>
+            <td class="">2.00</td>
+            <td class="">4.00</td>
+            <td class="">7.01</td>
+            <td class="">3.51</td>
+            <td class="">3146</td>
+            <td class="">1540</td>
+            <td class=""><a href="https://logs.tf/3286820">3286820</a>, <a href="https://logs.tf/3286842">3286842</a>, <a href="https://logs.tf/3287457">3287457</a>, <a href="https://logs.tf/3287482">3287482</a>, <a href="https://logs.tf/3287519">3287519</a>, <a href="https://logs.tf/3287549">3287549</a>, <a href="https://logs.tf/3287567">3287567</a>, </td>
+          </tr>
+          <tr>
+            <td class="">[U:1:143476343]</td>
+            <td class="">MY apples</td>
+            <td class="">1</td>
+            <td class="">0</td>
+            <td class="">1</td>
+            <td class="">104.36</td>
+            <td class="">1567.25</td>
+            <td class="">-1462.89</td>
+            <td class="">Infinity</td>
+            <td class="">Infinity</td>
+            <td class="">4.27</td>
+            <td class="">0.00</td>
+            <td class="">734</td>
+            <td class="">422</td>
+            <td class=""><a href="https://logs.tf/3286840">3286840</a>, <a href="https://logs.tf/3286864">3286864</a>, <a href="https://logs.tf/3287470">3287470</a>, </td>
+          </tr>
+          <tr>
+            <td class="">[U:1:87007493]</td>
+            <td class="">TW Hopps</td>
+            <td class="">0</td>
+            <td class="">0</td>
+            <td class="">1</td>
+            <td class="">317.65</td>
+            <td class="">6552.35</td>
+            <td class="">-6234.70</td>
+            <td class="">NaN</td>
+            <td class="">Infinity</td>
+            <td class="">0.00</td>
+            <td class="">0.00</td>
+            <td class="">180</td>
+            <td class="">34</td>
+            <td class=""><a href="https://logs.tf/3286839">3286839</a>, </td>
+          </tr>
+          <tr>
+            <td class="">[U:1:135277248]</td>
+            <td class="">HK sir9</td>
+            <td class="">1</td>
+            <td class="">0</td>
+            <td class="">2</td>
+            <td class="">152.22</td>
+            <td class="">2549.56</td>
+            <td class="">-2397.34</td>
+            <td class="">Infinity</td>
+            <td class="">Infinity</td>
+            <td class="">8.87</td>
+            <td class="">0.00</td>
+            <td class="">515</td>
+            <td class="">203</td>
+            <td class=""><a href="https://logs.tf/3286842">3286842</a>, <a href="https://logs.tf/3286865">3286865</a>, </td>
+          </tr>
+          <tr>
+            <td class="">[U:1:1321242748]</td>
+            <td class="">MY Doklalodka</td>
+            <td class="">2</td>
+            <td class="">1</td>
+            <td class="">3</td>
+            <td class="">102.54</td>
+            <td class="">603.28</td>
+            <td class="">-500.74</td>
+            <td class="">2.00</td>
+            <td class="">5.00</td>
+            <td class="">8.96</td>
+            <td class="">4.48</td>
+            <td class="">687</td>
+            <td class="">402</td>
+            <td class=""><a href="https://logs.tf/3287447">3287447</a>, </td>
+          </tr>
+          <tr>
+            <td class="">[U:1:105996834]</td>
+            <td class="">TH Luv</td>
+            <td class="">0</td>
+            <td class="">4</td>
+            <td class="">3</td>
+            <td class="">54.04</td>
+            <td class="">1892.55</td>
+            <td class="">-1838.50</td>
+            <td class="">0.00</td>
+            <td class="">0.75</td>
+            <td class="">0.00</td>
+            <td class="">10.36</td>
+            <td class="">626</td>
+            <td class="">695</td>
+            <td class=""><a href="https://logs.tf/3287457">3287457</a>, <a href="https://logs.tf/3287482">3287482</a>, <a href="https://logs.tf/3287498">3287498</a>, </td>
+          </tr>
+          <tr>
+            <td class="">[U:1:1059335465]</td>
+            <td class="">SG ruee</td>
+            <td class="">0</td>
+            <td class="">0</td>
+            <td class="">0</td>
+            <td class="">127.89</td>
+            <td class="">4741.58</td>
+            <td class="">-4613.69</td>
+            <td class="">NaN</td>
+            <td class="">NaN</td>
+            <td class="">0.00</td>
+            <td class="">0.00</td>
+            <td class="">162</td>
+            <td class="">76</td>
+            <td class=""><a href="https://logs.tf/3287567">3287567</a>, </td>
+          </tr>
+      </tbody>
+      </table>
+    </div>
+
+    <div id="medic" class="table-hidden">
+      <h3>Medic</h3>
+      <table id="medicStats" class="js-sort-table">
+      <thead>
+        <tr>
+          <th class="js-sort-number">Steam ID</td>
+          <th class="js-sort-number">Aliases</td>
+          <th class="js-sort-number">Kills</td>
+          <th class="js-sort-number">Deaths</td>
+          <th class="js-sort-number">Assists</td>
+          <th class="js-sort-number">Ubers</th>
+          <th class="js-sort-number">Drops</th>
+          <th class="js-sort-number">HPM</th>
+          <th class="js-sort-number">Ubers/30m</th>
+          <th class="js-sort-number">Drops/30m</th>
+          <th class="js-sort-number">DPM</td>
+          <th class="js-sort-number">DTM</td>
+          <th class="js-sort-number">DPM - DTM</td>
+          <th class="js-sort-number">K/D</td>
+          <th class="js-sort-number">KA/D</td>
+          <th class="js-sort-number">K/30m</th>
+          <th class="js-sort-number">D/30m</th>
+          <th class="js-sort-number">Total Damage</td>
+          <th class="js-sort-number">Total Time (s)</td>
+          <th class="js-sort-number">Logs</td>
+        </tr>
+      </thead>
+      <tbody>
+          <tr>
+            <td class="">[U:1:196913090]</td>
+            <td class="">SG K1lled</td>
+            <td class="">15</td>
+            <td class="">67</td>
+            <td class="">144</td>
+            <td class="">128</td>
+            <td class="">6</td>
+            <td class="">1169.75</td>
+            <td class="">15.29</td>
+            <td class="">0.72</td>
+            <td class="">14.93</td>
+            <td class="">122.48</td>
+            <td class="">-107.55</td>
+            <td class="">0.22</td>
+            <td class="">2.37</td>
+            <td class="">1.79</td>
+            <td class="">8.00</td>
+            <td class="">3749</td>
+            <td class="">15066</td>
+            <td class=""><a href="https://logs.tf/3286805">3286805</a>, <a href="https://logs.tf/3286820">3286820</a>, <a href="https://logs.tf/3286827">3286827</a>, <a href="https://logs.tf/3286839">3286839</a>, <a href="https://logs.tf/3287447">3287447</a>, <a href="https://logs.tf/3287482">3287482</a>, <a href="https://logs.tf/3287519">3287519</a>, <a href="https://logs.tf/3287549">3287549</a>, <a href="https://logs.tf/3287557">3287557</a>, <a href="https://logs.tf/3287567">3287567</a>, </td>
+          </tr>
+          <tr>
+            <td class="">[U:1:250021149]</td>
+            <td class="">KR song</td>
+            <td class="">7</td>
+            <td class="">57</td>
+            <td class="">104</td>
+            <td class="">67</td>
+            <td class="">2</td>
+            <td class="">1046.06</td>
+            <td class="">12.03</td>
+            <td class="">0.36</td>
+            <td class="">17.00</td>
+            <td class="">139.05</td>
+            <td class="">-122.05</td>
+            <td class="">0.12</td>
+            <td class="">1.95</td>
+            <td class="">1.26</td>
+            <td class="">10.23</td>
+            <td class="">2841</td>
+            <td class="">10027</td>
+            <td class=""><a href="https://logs.tf/3286805">3286805</a>, <a href="https://logs.tf/3286815">3286815</a>, <a href="https://logs.tf/3286828">3286828</a>, <a href="https://logs.tf/3286840">3286840</a>, <a href="https://logs.tf/3286865">3286865</a>, <a href="https://logs.tf/3287470">3287470</a>, <a href="https://logs.tf/3287457">3287457</a>, </td>
+          </tr>
+          <tr>
+            <td class="">[U:1:87007493]</td>
+            <td class="">TW Hopps</td>
+            <td class="">3</td>
+            <td class="">20</td>
+            <td class="">19</td>
+            <td class="">11</td>
+            <td class="">2</td>
+            <td class="">1123.04</td>
+            <td class="">9.25</td>
+            <td class="">1.68</td>
+            <td class="">11.94</td>
+            <td class="">214.74</td>
+            <td class="">-202.79</td>
+            <td class="">0.15</td>
+            <td class="">1.10</td>
+            <td class="">2.52</td>
+            <td class="">16.82</td>
+            <td class="">426</td>
+            <td class="">2140</td>
+            <td class=""><a href="https://logs.tf/3286808">3286808</a>, <a href="https://logs.tf/3286815">3286815</a>, </td>
+          </tr>
+          <tr>
+            <td class="">[U:1:392106977]</td>
+            <td class="">TH Kpopbobo</td>
+            <td class="">9</td>
+            <td class="">109</td>
+            <td class="">201</td>
+            <td class="">167</td>
+            <td class="">6</td>
+            <td class="">1214.90</td>
+            <td class="">14.74</td>
+            <td class="">0.53</td>
+            <td class="">10.03</td>
+            <td class="">134.24</td>
+            <td class="">-124.22</td>
+            <td class="">0.08</td>
+            <td class="">1.93</td>
+            <td class="">0.79</td>
+            <td class="">9.62</td>
+            <td class="">3408</td>
+            <td class="">20393</td>
+            <td class=""><a href="https://logs.tf/3286808">3286808</a>, <a href="https://logs.tf/3286820">3286820</a>, <a href="https://logs.tf/3286828">3286828</a>, <a href="https://logs.tf/3286842">3286842</a>, <a href="https://logs.tf/3286864">3286864</a>, <a href="https://logs.tf/3287457">3287457</a>, <a href="https://logs.tf/3287482">3287482</a>, <a href="https://logs.tf/3287492">3287492</a>, <a href="https://logs.tf/3287498">3287498</a>, <a href="https://logs.tf/3287519">3287519</a>, <a href="https://logs.tf/3287549">3287549</a>, <a href="https://logs.tf/3287557">3287557</a>, <a href="https://logs.tf/3287567">3287567</a>, </td>
+          </tr>
+          <tr>
+            <td class="">[U:1:191310610]</td>
+            <td class="">VN Cry</td>
+            <td class="">1</td>
+            <td class="">13</td>
+            <td class="">18</td>
+            <td class="">23</td>
+            <td class="">2</td>
+            <td class="">1170.75</td>
+            <td class="">12.50</td>
+            <td class="">1.09</td>
+            <td class="">11.82</td>
+            <td class="">137.38</td>
+            <td class="">-125.56</td>
+            <td class="">0.08</td>
+            <td class="">1.46</td>
+            <td class="">0.54</td>
+            <td class="">7.07</td>
+            <td class="">652</td>
+            <td class="">3311</td>
+            <td class=""><a href="https://logs.tf/3286809">3286809</a>, <a href="https://logs.tf/3286826">3286826</a>, </td>
+          </tr>
+          <tr>
+            <td class="">[U:1:195741321]</td>
+            <td class="">MY farn</td>
+            <td class="">5</td>
+            <td class="">63</td>
+            <td class="">93</td>
+            <td class="">84</td>
+            <td class="">2</td>
+            <td class="">1130.74</td>
+            <td class="">12.45</td>
+            <td class="">0.30</td>
+            <td class="">8.48</td>
+            <td class="">124.76</td>
+            <td class="">-116.29</td>
+            <td class="">0.08</td>
+            <td class="">1.56</td>
+            <td class="">0.74</td>
+            <td class="">9.34</td>
+            <td class="">1716</td>
+            <td class="">12146</td>
+            <td class=""><a href="https://logs.tf/3286809">3286809</a>, <a href="https://logs.tf/3286814">3286814</a>, <a href="https://logs.tf/3286827">3286827</a>, <a href="https://logs.tf/3286840">3286840</a>, <a href="https://logs.tf/3286864">3286864</a>, <a href="https://logs.tf/3287447">3287447</a>, <a href="https://logs.tf/3287470">3287470</a>, <a href="https://logs.tf/3287492">3287492</a>, <a href="https://logs.tf/3287498">3287498</a>, </td>
+          </tr>
+          <tr>
+            <td class="">[U:1:99049726]</td>
+            <td class="">HK Striker</td>
+            <td class="">1</td>
+            <td class="">40</td>
+            <td class="">63</td>
+            <td class="">53</td>
+            <td class="">4</td>
+            <td class="">1108.10</td>
+            <td class="">13.22</td>
+            <td class="">1.00</td>
+            <td class="">9.81</td>
+            <td class="">144.56</td>
+            <td class="">-134.75</td>
+            <td class="">0.03</td>
+            <td class="">1.60</td>
+            <td class="">0.25</td>
+            <td class="">9.98</td>
+            <td class="">1180</td>
+            <td class="">7214</td>
+            <td class=""><a href="https://logs.tf/3286814">3286814</a>, <a href="https://logs.tf/3286826">3286826</a>, <a href="https://logs.tf/3286842">3286842</a>, <a href="https://logs.tf/3286865">3286865</a>, </td>
+          </tr>
+          <tr>
+            <td class="">[U:1:926069803]</td>
+            <td class="">TW catwif</td>
+            <td class="">2</td>
+            <td class="">11</td>
+            <td class="">6</td>
+            <td class="">6</td>
+            <td class="">0</td>
+            <td class="">1021.81</td>
+            <td class="">9.88</td>
+            <td class="">0.00</td>
+            <td class="">16.08</td>
+            <td class="">519.19</td>
+            <td class="">-503.11</td>
+            <td class="">0.18</td>
+            <td class="">0.73</td>
+            <td class="">3.29</td>
+            <td class="">18.12</td>
+            <td class="">293</td>
+            <td class="">1093</td>
+            <td class=""><a href="https://logs.tf/3286815">3286815</a>, <a href="https://logs.tf/3286839">3286839</a>, </td>
+          </tr>
+      </tbody>
+      </table>
+    </div>
+
+    <div id="sniper" class="table-hidden">
+      <h3>Sniper</h3>
+      <table id="sniperStats" class="js-sort-table">
+      <thead>
+        <tr>
+          <th class="js-sort-number">Steam ID</td>
+          <th class="js-sort-number">Aliases</td>
+          <th class="js-sort-number">Kills</td>
+          <th class="js-sort-number">Deaths</td>
+          <th class="js-sort-number">Assists</td>
+          <th class="js-sort-number">DPM</td>
+          <th class="js-sort-number">DTM</td>
+          <th class="js-sort-number">DPM - DTM</td>
+          <th class="js-sort-number">K/D</td>
+          <th class="js-sort-number">KA/D</td>
+          <th class="js-sort-number">K/30m</th>
+          <th class="js-sort-number">D/30m</th>
+          <th class="js-sort-number">Total Damage</td>
+          <th class="js-sort-number">Total Time (s)</td>
+          <th class="js-sort-number">Logs</td>
+        </tr>
+      </thead>
+      <tbody>
+          <tr>
+            <td class="">[U:1:96363292]</td>
+            <td class="">SG n4ver</td>
+            <td class="">6</td>
+            <td class="">5</td>
+            <td class="">0</td>
+            <td class="">151.23</td>
+            <td class="">3992.10</td>
+            <td class="">-3840.86</td>
+            <td class="">1.20</td>
+            <td class="">1.20</td>
+            <td class="">22.22</td>
+            <td class="">18.52</td>
+            <td class="">1225</td>
+            <td class="">486</td>
+            <td class=""><a href="https://logs.tf/3286805">3286805</a>, <a href="https://logs.tf/3286839">3286839</a>, <a href="https://logs.tf/3287519">3287519</a>, <a href="https://logs.tf/3287549">3287549</a>, <a href="https://logs.tf/3287557">3287557</a>, </td>
+          </tr>
+          <tr>
+            <td class="">[U:1:1126684222]</td>
+            <td class="">KR Vinea</td>
+            <td class="">4</td>
+            <td class="">3</td>
+            <td class="">0</td>
+            <td class="">265.71</td>
+            <td class="">2571.58</td>
+            <td class="">-2305.87</td>
+            <td class="">1.33</td>
+            <td class="">1.33</td>
+            <td class="">18.37</td>
+            <td class="">13.78</td>
+            <td class="">1736</td>
+            <td class="">392</td>
+            <td class=""><a href="https://logs.tf/3286805">3286805</a>, <a href="https://logs.tf/3286815">3286815</a>, <a href="https://logs.tf/3286840">3286840</a>, <a href="https://logs.tf/3286865">3286865</a>, </td>
+          </tr>
+          <tr>
+            <td class="">[U:1:48645190]</td>
+            <td class="">TW butterfly</td>
+            <td class="">1</td>
+            <td class="">0</td>
+            <td class="">0</td>
+            <td class="">350.65</td>
+            <td class="">5288.57</td>
+            <td class="">-4937.92</td>
+            <td class="">Infinity</td>
+            <td class="">Infinity</td>
+            <td class="">23.38</td>
+            <td class="">0.00</td>
+            <td class="">450</td>
+            <td class="">77</td>
+            <td class=""><a href="https://logs.tf/3286815">3286815</a>, </td>
+          </tr>
+          <tr>
+            <td class="">[U:1:183670774]</td>
+            <td class="">KR Stryker</td>
+            <td class="">3</td>
+            <td class="">4</td>
+            <td class="">0</td>
+            <td class="">279.32</td>
+            <td class="">2636.71</td>
+            <td class="">-2357.39</td>
+            <td class="">0.75</td>
+            <td class="">0.75</td>
+            <td class="">14.10</td>
+            <td class="">18.80</td>
+            <td class="">1783</td>
+            <td class="">383</td>
+            <td class=""><a href="https://logs.tf/3286815">3286815</a>, <a href="https://logs.tf/3286865">3286865</a>, <a href="https://logs.tf/3287470">3287470</a>, </td>
+          </tr>
+          <tr>
+            <td class="">[U:1:312605197]</td>
+            <td class="">TH heria</td>
+            <td class="">47</td>
+            <td class="">22</td>
+            <td class="">13</td>
+            <td class="">284.51</td>
+            <td class="">1157.83</td>
+            <td class="">-873.32</td>
+            <td class="">2.14</td>
+            <td class="">2.73</td>
+            <td class="">28.70</td>
+            <td class="">13.43</td>
+            <td class="">13979</td>
+            <td class="">2948</td>
+            <td class=""><a href="https://logs.tf/3286842">3286842</a>, <a href="https://logs.tf/3286864">3286864</a>, <a href="https://logs.tf/3287457">3287457</a>, <a href="https://logs.tf/3287482">3287482</a>, <a href="https://logs.tf/3287492">3287492</a>, <a href="https://logs.tf/3287498">3287498</a>, <a href="https://logs.tf/3287549">3287549</a>, <a href="https://logs.tf/3287557">3287557</a>, <a href="https://logs.tf/3287567">3287567</a>, </td>
+          </tr>
+          <tr>
+            <td class="">[U:1:338884682]</td>
+            <td class="">HK Joe</td>
+            <td class="">0</td>
+            <td class="">0</td>
+            <td class="">0</td>
+            <td class="">0.00</td>
+            <td class="">4132.26</td>
+            <td class="">-4132.26</td>
+            <td class="">NaN</td>
+            <td class="">NaN</td>
+            <td class="">0.00</td>
+            <td class="">0.00</td>
+            <td class="">0</td>
+            <td class="">93</td>
+            <td class=""><a href="https://logs.tf/3286842">3286842</a>, </td>
+          </tr>
+          <tr>
+            <td class="">[U:1:135277248]</td>
+            <td class="">HK sir9</td>
+            <td class="">2</td>
+            <td class="">0</td>
+            <td class="">0</td>
+            <td class="">291.67</td>
+            <td class="">3594.17</td>
+            <td class="">-3302.50</td>
+            <td class="">Infinity</td>
+            <td class="">Infinity</td>
+            <td class="">25.00</td>
+            <td class="">0.00</td>
+            <td class="">700</td>
+            <td class="">144</td>
+            <td class=""><a href="https://logs.tf/3286842">3286842</a>, <a href="https://logs.tf/3286865">3286865</a>, </td>
+          </tr>
+          <tr>
+            <td class="">[U:1:80080450]</td>
+            <td class="">MY teejay</td>
+            <td class="">3</td>
+            <td class="">0</td>
+            <td class="">0</td>
+            <td class="">646.99</td>
+            <td class="">9067.95</td>
+            <td class="">-8420.96</td>
+            <td class="">Infinity</td>
+            <td class="">Infinity</td>
+            <td class="">65.06</td>
+            <td class="">0.00</td>
+            <td class="">895</td>
+            <td class="">83</td>
+            <td class=""><a href="https://logs.tf/3287447">3287447</a>, <a href="https://logs.tf/3287498">3287498</a>, </td>
+          </tr>
+          <tr>
+            <td class="">[U:1:1059335465]</td>
+            <td class="">SG ruee</td>
+            <td class="">2</td>
+            <td class="">2</td>
+            <td class="">0</td>
+            <td class="">316.69</td>
+            <td class="">10615.04</td>
+            <td class="">-10298.35</td>
+            <td class="">1.00</td>
+            <td class="">1.00</td>
+            <td class="">27.07</td>
+            <td class="">27.07</td>
+            <td class="">702</td>
+            <td class="">133</td>
+            <td class=""><a href="https://logs.tf/3287482">3287482</a>, <a href="https://logs.tf/3287519">3287519</a>, <a href="https://logs.tf/3287549">3287549</a>, </td>
+          </tr>
+          <tr>
+            <td class="">[U:1:105996834]</td>
+            <td class="">TH Luv</td>
+            <td class="">1</td>
+            <td class="">3</td>
+            <td class="">0</td>
+            <td class="">119.51</td>
+            <td class="">14295.74</td>
+            <td class="">-14176.23</td>
+            <td class="">0.33</td>
+            <td class="">0.33</td>
+            <td class="">14.75</td>
+            <td class="">44.26</td>
+            <td class="">243</td>
+            <td class="">122</td>
+            <td class=""><a href="https://logs.tf/3287498">3287498</a>, <a href="https://logs.tf/3287519">3287519</a>, <a href="https://logs.tf/3287549">3287549</a>, <a href="https://logs.tf/3287567">3287567</a>, </td>
+          </tr>
+          <tr>
+            <td class="">[U:1:205675480]</td>
+            <td class="">SG jpd</td>
+            <td class="">0</td>
+            <td class="">0</td>
+            <td class="">0</td>
+            <td class="">49.35</td>
+            <td class="">4745.81</td>
+            <td class="">-4696.46</td>
+            <td class="">NaN</td>
+            <td class="">NaN</td>
+            <td class="">0.00</td>
+            <td class="">0.00</td>
+            <td class="">51</td>
+            <td class="">62</td>
+            <td class=""><a href="https://logs.tf/3287567">3287567</a>, </td>
+          </tr>
+      </tbody>
+      </table>
+    </div>
+
+    <div id="spy" class="table-hidden">
+      <h3>Spy</h3>
+      <table id="spyStats" class="js-sort-table">
+      <thead>
+        <tr>
+          <th class="js-sort-number">Steam ID</td>
+          <th class="js-sort-number">Aliases</td>
+          <th class="js-sort-number">Kills</td>
+          <th class="js-sort-number">Deaths</td>
+          <th class="js-sort-number">Assists</td>
+          <th class="js-sort-number">DPM</td>
+          <th class="js-sort-number">DTM</td>
+          <th class="js-sort-number">DPM - DTM</td>
+          <th class="js-sort-number">K/D</td>
+          <th class="js-sort-number">KA/D</td>
+          <th class="js-sort-number">K/30m</th>
+          <th class="js-sort-number">D/30m</th>
+          <th class="js-sort-number">Total Damage</td>
+          <th class="js-sort-number">Total Time (s)</td>
+          <th class="js-sort-number">Logs</td>
+        </tr>
+      </thead>
+      <tbody>
+          <tr>
+            <td class="">[U:1:105996834]</td>
+            <td class="">TH Luv</td>
+            <td class="">5</td>
+            <td class="">8</td>
+            <td class="">0</td>
+            <td class="">152.80</td>
+            <td class="">4666.20</td>
+            <td class="">-4513.40</td>
+            <td class="">0.63</td>
+            <td class="">0.63</td>
+            <td class="">15.00</td>
+            <td class="">24.00</td>
+            <td class="">1528</td>
+            <td class="">600</td>
+            <td class=""><a href="https://logs.tf/3286808">3286808</a>, <a href="https://logs.tf/3286842">3286842</a>, <a href="https://logs.tf/3286864">3286864</a>, <a href="https://logs.tf/3287482">3287482</a>, <a href="https://logs.tf/3287498">3287498</a>, <a href="https://logs.tf/3287549">3287549</a>, <a href="https://logs.tf/3287567">3287567</a>, </td>
+          </tr>
+          <tr>
+            <td class="">[U:1:183670774]</td>
+            <td class="">KR Stryker</td>
+            <td class="">3</td>
+            <td class="">4</td>
+            <td class="">1</td>
+            <td class="">227.11</td>
+            <td class="">3821.62</td>
+            <td class="">-3594.51</td>
+            <td class="">0.75</td>
+            <td class="">1.00</td>
+            <td class="">19.01</td>
+            <td class="">25.35</td>
+            <td class="">1075</td>
+            <td class="">284</td>
+            <td class=""><a href="https://logs.tf/3286815">3286815</a>, <a href="https://logs.tf/3286865">3286865</a>, <a href="https://logs.tf/3287457">3287457</a>, </td>
+          </tr>
+          <tr>
+            <td class="">[U:1:1126684222]</td>
+            <td class="">KR Vinea</td>
+            <td class="">1</td>
+            <td class="">2</td>
+            <td class="">0</td>
+            <td class="">269.29</td>
+            <td class="">5340.47</td>
+            <td class="">-5071.18</td>
+            <td class="">0.50</td>
+            <td class="">0.50</td>
+            <td class="">14.17</td>
+            <td class="">28.35</td>
+            <td class="">570</td>
+            <td class="">127</td>
+            <td class=""><a href="https://logs.tf/3286815">3286815</a>, <a href="https://logs.tf/3286865">3286865</a>, </td>
+          </tr>
+          <tr>
+            <td class="">[U:1:114873466]</td>
+            <td class="">SG Smily</td>
+            <td class="">1</td>
+            <td class="">3</td>
+            <td class="">0</td>
+            <td class="">183.67</td>
+            <td class="">6659.18</td>
+            <td class="">-6475.51</td>
+            <td class="">0.33</td>
+            <td class="">0.33</td>
+            <td class="">12.24</td>
+            <td class="">36.73</td>
+            <td class="">450</td>
+            <td class="">147</td>
+            <td class=""><a href="https://logs.tf/3287447">3287447</a>, <a href="https://logs.tf/3287519">3287519</a>, <a href="https://logs.tf/3287549">3287549</a>, </td>
+          </tr>
+      </tbody>
+      </table>
+    </div>
+  </body>
+</html>
